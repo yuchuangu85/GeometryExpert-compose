@@ -1,17 +1,25 @@
 package wprover;
 
-import gprover.cond;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
-import java.util.Vector;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.awt.geom.Rectangle2D;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Vector;
+
+import javax.swing.JPanel;
+
+import gprover.cond;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -783,7 +791,7 @@ public class CProveText {
         else {
             if (rule.length() > 0) {
                 String sp = System.getProperty("file.separator");
-                rpath = "rules" + sp + rule + ".gex";
+                rpath = ResourceUtil.loadURLFromResource("rules" + sp + rule + ".gex").getPath();
             } else
                 rpath = "";
         }

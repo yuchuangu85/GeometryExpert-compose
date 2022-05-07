@@ -399,8 +399,6 @@ public class CMisc {
                     ANGLE_TYPE = Integer.parseInt(m2);
                 } else if (m1.equalsIgnoreCase("AntiAlias")) {
                     AntiAlias = Boolean.parseBoolean(m2);
-                } else if (m1.equalsIgnoreCase("LookAndFeel")) {
-                    lookAndFeel = (m2);
                 } else if (m1.equalsIgnoreCase("angleNameFont")) {
                     angleNameFont = getFont(m2);
                 } else if (m1.equalsIgnoreCase("nameFont")) {

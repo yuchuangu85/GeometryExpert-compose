@@ -1,13 +1,14 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import com.formdev.flatlaf.FlatDarculaLaf
 import com.formdev.flatlaf.FlatLaf
+import com.formdev.flatlaf.FlatLightLaf
 import com.formdev.flatlaf.util.SystemInfo
 import wprover.GExpert
 import javax.swing.SwingUtilities
 
 
 fun main() = SwingUtilities.invokeLater {
-//    setupTheme()
+    setupTheme()
     GExpert.createAndShowGUI()
 }
 
@@ -30,6 +31,6 @@ fun setupTheme() {
         System.setProperty("apple.awt.application.appearance", "system")
     }
     // set theme like Intellij
-    FlatLaf.setup(FlatDarculaLaf())
+    FlatLaf.setup(FlatLightLaf())
 
 }

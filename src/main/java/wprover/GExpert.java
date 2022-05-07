@@ -50,6 +50,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Vector;
@@ -251,8 +252,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             return;
 
         language = new Language();
-        String user_directory = DirsUtil.getUserDir();
-        File f = new File(user_directory + "/language/" + CMisc.lan + ".lan");
+        File f = new File(ResourceUtil.loadURLFromResource("language/" + CMisc.lan + ".lan").getPath());
         language.load(f);
         Language.setLanugage(language);
     }
@@ -1195,7 +1195,6 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
 
     public void sendAction(String command, Object src) {
 
-
         String tip = null;
         String ps = null;
         String pname = null;
@@ -1266,7 +1265,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
                     }
                     dp.write_ps(path, r, ptf, true);
                 } catch (Exception ee) {
-                    CMisc.print(ee.toString() + "\n" + ee.getStackTrace());
+                    CMisc.print(ee + "\n" + Arrays.toString(ee.getStackTrace()));
                 }
             }
 
@@ -1279,9 +1278,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         } else if (command.equalsIgnoreCase("Save Proof as Animated Image")) {
             this.saveProofAsGIF();
         } else if (command.equals("Save") || command.equals("Save as...")) {
-            if (command.equals("Save"))
-                this.saveAFile(false);
-            else this.saveAFile(true);
+            this.saveAFile(!command.equals("Save"));
 
         } else if (command.equals("Save as Text")) {
             if (!need_save())
@@ -1730,10 +1727,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             if (n == JOptionPane.OK_OPTION) {
                 boolean r = saveAFile(false);
                 return r;
-            } else if (n == JOptionPane.NO_OPTION)
-                return true;
-            else
-                return false;
+            } else return n == JOptionPane.NO_OPTION;
         }
         return true;
     }
@@ -2917,7 +2911,6 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             }
         }
     }
-
 
     protected static ImageIcon createImageIcon(String path) {
         URL imgURL = ResourceUtil.loadURLFromResource(path);

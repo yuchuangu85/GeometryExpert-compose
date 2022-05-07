@@ -841,12 +841,10 @@ public class MiscDialog extends JBaseDialog implements FocusListener, ActionList
             blook = new JComboBox(ss);
             blook.setSelectedItem(CMisc.lookAndFeel);
             p5.add(blook);
-            blook.addItemListener(new ItemListener() {
-                public void itemStateChanged(ItemEvent e) {
-                    if (onSetting) return;
-                    if (blook.getSelectedIndex() != -1)
-                        CMisc.lookAndFeel = blook.getSelectedItem().toString();
-                }
+            blook.addItemListener(e -> {
+                if (onSetting) return;
+                if (blook.getSelectedIndex() != -1)
+                    CMisc.lookAndFeel = blook.getSelectedItem().toString();
             });
 
 

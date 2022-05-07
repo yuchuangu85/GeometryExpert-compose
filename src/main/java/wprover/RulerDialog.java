@@ -1,16 +1,36 @@
 package wprover;
 
 
-import gprover.gib;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.tree.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.EventObject;
 import java.util.Vector;
+
+import javax.swing.AbstractCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTree;
+import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeCellEditor;
+import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreePath;
+
+import gprover.gib;
 
 
 public class RulerDialog extends JBaseDialog implements ChangeListener, ActionListener, MouseListener {
@@ -28,7 +48,7 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
 
         this.setTitle("Rules for GDD method");
 
-        Object rootNodes[] = new Object[6];
+        Object[] rootNodes = new Object[6];
         int i = 0;
         Vector vrule = RuleList.getAllGDDRules();
 
@@ -84,8 +104,7 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
     private Vector createNameVector(String n, Vector vlist, int t1, int t2) {
         CheckBoxNode[] list1 = new CheckBoxNode[t2 - t1 + 1];
         createCheckBox(list1, vlist, t1, t2);
-        Vector v1 = new NamedVector(n, list1);
-        return v1;
+        return new NamedVector(n, list1);
     }
 
     private void createCheckBox(CheckBoxNode[] list, Vector vlist, int t1, int t2) {
@@ -122,8 +141,7 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
             Object obj = nd.getUserObject();
             if (obj instanceof CheckBoxNode) {
                 CheckBoxNode ch = (CheckBoxNode) obj;
-                Grule r = ch.getRule();
-                return r;
+                return ch.getRule();
             }
         }
         return null;
@@ -167,8 +185,8 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
     }
 
     class CheckBoxNodeRenderer implements TreeCellRenderer {
-        private JCheckBox leafRenderer = new JCheckBox();
-        private DefaultTreeCellRenderer nonLeafRenderer = new DefaultTreeCellRenderer();
+        private final JCheckBox leafRenderer = new JCheckBox();
+        private final DefaultTreeCellRenderer nonLeafRenderer = new DefaultTreeCellRenderer();
         Color selectionBorderColor, selectionForeground, selectionBackground, textForeground, textBackground;
         CheckBoxNode leafNode = null;
 
@@ -187,8 +205,7 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
                 leafRenderer.setFont(fontValue);
             }
             Boolean booleanValue = (Boolean) UIManager.get("Tree.drawsFocusBorderAroundIcon");
-            leafRenderer.setFocusPainted((booleanValue != null) && (booleanValue.booleanValue()));
-
+            leafRenderer.setFocusPainted((booleanValue != null) && (booleanValue));
 
             selectionBorderColor = UIManager.getColor("Tree.selectionBorderColor");
             selectionForeground = UIManager.getColor("Tree.selectionForeground");
@@ -202,13 +219,18 @@ public class RulerDialog extends JBaseDialog implements ChangeListener, ActionLi
             });
         }
 
-        public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                      boolean selected, boolean expanded, boolean leaf, int row,
+        public Component getTreeCellRendererComponent(JTree tree,
+                                                      Object value,
+                                                      boolean selected,
+                                                      boolean expanded,
+                                                      boolean leaf,
+                                                      int row,
                                                       boolean hasFocus) {
 
             Component returnValue;
             if (leaf) {
-                String stringValue = tree.convertValueToText(value, selected, expanded, leaf, row, false);
+                String stringValue = tree.convertValueToText(value, selected, expanded,
+                        leaf, row, false);
                 leafRenderer.setText(stringValue);
                 leafRenderer.setSelected(false);
                 leafRenderer.setEnabled(tree.isEnabled());

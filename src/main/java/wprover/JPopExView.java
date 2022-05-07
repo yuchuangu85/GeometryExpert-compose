@@ -36,7 +36,7 @@ public class JPopExView extends JBaseDialog
         dp.clearAll();
         try
         {
-            boolean ss = dp.Load(f + sp +"rules" + sp + s);
+            boolean ss = dp.Load(f + sp + "rules" + sp + s);
             panel.setdrawP(dp);
         } catch (IOException ee)
         {

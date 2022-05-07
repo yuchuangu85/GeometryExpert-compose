@@ -1,21 +1,42 @@
 package wprover;
 
-import gprover.*;
-
-import javax.swing.*;
-import java.util.Vector;
-import java.util.Calendar;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.awt.print.*;
-import java.io.*;
+import java.awt.event.ActionListener;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Vector;
 
-import maths.TPoly;
-import maths.TMono;
-import maths.param;
-import maths.PolyBasic;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.Timer;
+
+import gprover.Pro_point;
+import gprover.cons;
+import gprover.gib;
+import gprover.gterm;
 import maths.CharSet;
+import maths.PolyBasic;
+import maths.TMono;
+import maths.TPoly;
+import maths.param;
+import util.ResourceUtil;
 
 
 public class
@@ -8764,7 +8785,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     boolean Load(String name) throws IOException {
-        File f = new File(name);
+        File f = new File(ResourceUtil.loadURLFromResource(name).getPath());
         return Load(f);
     }
 

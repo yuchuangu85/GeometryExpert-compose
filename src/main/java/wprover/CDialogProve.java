@@ -41,6 +41,7 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 import util.DirsUtil;
+import util.ResourceUtil;
 
 
 public class CDialogProve extends JBaseDialog {
@@ -120,8 +121,7 @@ class ProvePane extends JPanel
     }
 
     public void setRuleList() {
-        String user_directory = DirsUtil.getUserDir();
-        File f = new File(user_directory + "/wprover/rules");
+        File f = new File(ResourceUtil.loadURLFromResource("rules").getPath());
         mrule = new JMenu("-->");
         addDirectory(mrule, f, "rules");
     }
@@ -169,7 +169,7 @@ class ProvePane extends JPanel
         Font f = cptext.getFont();
 
         bfonts.setSelectedItem(f.getName());
-        bsize.setSelectedItem(new Integer(f.getSize()));
+        bsize.setSelectedItem(f.getSize());
 
         Color c1 = cptext.getCaptainColor();
         color_captain.setForeground(c1);
