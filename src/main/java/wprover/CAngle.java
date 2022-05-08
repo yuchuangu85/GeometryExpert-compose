@@ -798,9 +798,9 @@ public class CAngle extends CClass {
         if (CMisc.version_load_now < 0.01) {
             m_id = in.readInt();
             int dx = in.readInt();
-            lstart = dp.getLineByid(dx);
+            lstart = dp.getLineById(dx);
             int dy = in.readInt();
-            lend = dp.getLineByid(dy);
+            lend = dp.getLineById(dy);
             radius = in.readInt();
 
             int px = in.readInt();
@@ -821,9 +821,9 @@ public class CAngle extends CClass {
             super.Load(in, dp);
 
             int dx = in.readInt();
-            lstart = dp.getLineByid(dx);
+            lstart = dp.getLineById(dx);
             int dy = in.readInt();
-            lend = dp.getLineByid(dy);
+            lend = dp.getLineById(dy);
             int px = in.readInt();
             pstart = dp.getPointById(px);
             int py = in.readInt();

@@ -418,9 +418,9 @@ public class AnimateC {
         d = in.readInt();
 
         if (onType == 1) {
-            onObj = dp.getLineByid(d);
+            onObj = dp.getLineById(d);
         } else if (onType == 2) {
-            onObj = dp.getCircleByid(d);
+            onObj = dp.getCircleById(d);
         } else if (onType == 3) {
             onObj = dp.getTraceById(d);
         }

@@ -903,7 +903,7 @@ public class RuleApplicationDialog extends JBaseDialog implements ComponentListe
         public void mouseDragged(MouseEvent e) {
             dx.DWMouseDrag((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dpp.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             dpane.repaint();
             this.repaint();
         }
@@ -921,7 +921,7 @@ public class RuleApplicationDialog extends JBaseDialog implements ComponentListe
         public void mousePressed(MouseEvent e) {
             dx.DWButtonDown((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dpp.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             dpane.repaint();
             this.repaint();
         }
@@ -930,7 +930,7 @@ public class RuleApplicationDialog extends JBaseDialog implements ComponentListe
         public void mouseReleased(MouseEvent e) {
             dx.DWButtonUp((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dpp.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             dpane.repaint();
             this.repaint();
         }

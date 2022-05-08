@@ -1536,7 +1536,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
                 dp.defineSpecificAngle();
             } else if (command.equalsIgnoreCase("ra_side")) {
                 dp.SetCurrentAction(DrawProcess.SETEQSIDE);
-                dp.setcurrentStatus(0);
+                dp.setCurrentStatus(0);
                 ps = language.getEnglish(ps);
                 if (ps.equalsIgnoreCase("Other..")) {
                     RatioSelectDialog dlg = new RatioSelectDialog(this);
@@ -1552,7 +1552,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
 //                dp.setcurrentStatus(status);
             } else if (command.equalsIgnoreCase("equal distance")) {
                 dp.SetCurrentAction(DrawProcess.SETEQSIDE);
-                dp.setcurrentStatus(1);
+                dp.setCurrentStatus(1);
                 dp.setParameter(1, 1);
             } else if (command.equalsIgnoreCase("fillpolygon")) {
                 dp.SetCurrentAction(DrawProcess.DEFINEPOLY);
@@ -1629,11 +1629,11 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             } else if (command.equalsIgnoreCase("eqmark")) {
                 dp.SetCurrentAction(DrawProcess.EQMARK);
                 int status = Integer.parseInt(ps);
-                dp.setcurrentStatus(status);
+                dp.setCurrentStatus(status);
             } else if (command.equalsIgnoreCase("triangle")) {
-                dp.setcurrentStatus(3);
+                dp.setCurrentStatus(3);
                 dp.SetCurrentAction(DrawProcess.D_POLYGON);
-                dp.setcurrentStatus(3);
+                dp.setCurrentStatus(3);
             } else if (command.equalsIgnoreCase("equilateral triangle")) {
                 dp.SetCurrentAction(DrawProcess.DRAWTRIALL);
             } else if (command.equalsIgnoreCase("Tri_perp")) {
@@ -1642,9 +1642,9 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             } else if (command.equalsIgnoreCase("Tri_sq_iso")) {
                 dp.SetCurrentAction(DrawProcess.DRAWTRISQISO);
             } else if (command.equalsIgnoreCase("quadrangle")) {
-                dp.setcurrentStatus(4);
+                dp.setCurrentStatus(4);
                 dp.SetCurrentAction(DrawProcess.D_POLYGON);
-                dp.setcurrentStatus(4);
+                dp.setCurrentStatus(4);
             } else if (command.equalsIgnoreCase("parallelogram")) {
                 dp.SetCurrentAction(DrawProcess.PARALLELOGRAM);
             } else if (command.equalsIgnoreCase("ra_trapezoid")) {
@@ -1654,12 +1654,12 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
             } else if (command.equalsIgnoreCase("rectangle")) {
                 dp.SetCurrentAction(DrawProcess.RECTANGLE);
             } else if (command.equalsIgnoreCase("pentagon")) {
-                dp.setcurrentStatus(5);
+                dp.setCurrentStatus(5);
                 dp.SetCurrentAction(DrawProcess.D_POLYGON);
-                dp.setcurrentStatus(5);
+                dp.setCurrentStatus(5);
             } else if (command.equalsIgnoreCase("polygon")) {
                 dp.SetCurrentAction(DrawProcess.D_POLYGON);
-                dp.setcurrentStatus(9999);
+                dp.setCurrentStatus(9999);
             } else if (command.equalsIgnoreCase("hide object")) {
                 dp.SetCurrentAction(DrawProcess.HIDEOBJECT);
             } else if (command.equalsIgnoreCase("show object")) {
@@ -1680,7 +1680,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
                         n = Integer.parseInt(s);
                     } else
                         n = Integer.parseInt(ps);
-                    dp.setcurrentStatus(n);
+                    dp.setCurrentStatus(n);
                 } catch (NumberFormatException ee) {
                     JOptionPane.showMessageDialog(this, ee.getMessage(), "Information", JOptionPane.WARNING_MESSAGE);
                 }
@@ -1800,7 +1800,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
 
     public int Clear() {
         int n = 0;
-        if (CMisc.isApplication() && !dp.isitSaved()) {
+        if (CMisc.isApplication() && !dp.isItSaved()) {
             n = JOptionPane.showConfirmDialog(this, getLanguage(1000, "The diagram has been changed, do you want to save it?"),
                     getLanguage("Save"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (n == JOptionPane.YES_OPTION) {

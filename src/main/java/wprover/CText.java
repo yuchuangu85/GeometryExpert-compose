@@ -740,7 +740,7 @@ public class CText extends CClass {
                 str = new String(s);
 
                 int id = in.readInt();
-                CAngle ag = dp.getAngleByid(id);
+                CAngle ag = dp.getAngleById(id);
                 ag.ptext = this;
                 father = ag;
             } else if (type == VALUE_TEXT) {

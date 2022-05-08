@@ -325,7 +325,7 @@ public class RuleListDialog extends JBaseDialog {
         public void mouseDragged(MouseEvent e) {
             dx.DWMouseDrag((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dx.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             this.repaint();
         }
 
@@ -342,7 +342,7 @@ public class RuleListDialog extends JBaseDialog {
         public void mousePressed(MouseEvent e) {
             dx.DWButtonDown((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dx.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             this.repaint();
         }
 
@@ -350,7 +350,7 @@ public class RuleListDialog extends JBaseDialog {
         public void mouseReleased(MouseEvent e) {
             dx.DWButtonUp((e.getX() - xx) / scale, (e.getY() - yy) / scale);
             dx.reCalculate();
-            dx.recal_allFlash();
+            dx.recalAllFlash();
             this.repaint();
         }
 

@@ -2363,7 +2363,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
             } else if (s.equals("NDG"))
                 PanelProve1.this.showNDGs();
             else if (s.equalsIgnoreCase("All Solutions")) {
-                Vector v = dp.calculate_allResults();
+                Vector v = dp.calculateAllResults();
                 AllSolutionDialog dlg = new AllSolutionDialog(gxInstance);
                 dlg.setVlist(v);
                 dlg.autoFiltered();

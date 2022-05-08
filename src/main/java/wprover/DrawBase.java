@@ -1,5 +1,17 @@
 package wprover;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.io.File;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
 import gprover.cons;
 import gprover.gib;
 import maths.CharSet;
@@ -7,11 +19,6 @@ import maths.TMono;
 import maths.TPoly;
 import maths.param;
 import preference.CMisc;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -185,19 +192,19 @@ public class DrawBase {
             else return 0;
         }
 
-        for (int i = 0; i < POOL.length; i++) {
-            if (POOL[i][0] == a)
-                return POOL[i].length - 1;
+        for (int[] ints : POOL) {
+            if (ints[0] == a)
+                return ints.length - 1;
         }
 
         return -1;
     }
 
     public int getPoolA(int a, int index) {
-        for (int i = 0; i < POOL.length; i++) {
-            if (POOL[i][0] == a) {
-                if (POOL[i].length > index)
-                    return POOL[i][index];
+        for (int[] ints : POOL) {
+            if (ints[0] == a) {
+                if (ints.length > index)
+                    return ints[index];
             }
         }
         return 1;
@@ -236,8 +243,8 @@ public class DrawBase {
         if (p1 == null || p2 == null) {
             return null;
         }
-        for (int i = 0; i < linelist.size(); i++) {
-            CLine ln = (CLine) linelist.get(i);
+        for (Object o : linelist) {
+            CLine ln = (CLine) o;
             if (ln.points.contains(p1) && ln.points.contains(p2)) {
                 return ln;
             }
@@ -246,18 +253,18 @@ public class DrawBase {
     }
 
     final public void setAntiAlias(Graphics2D g2) {
+        RenderingHints qualityHints;
         if (CMisc.AntiAlias) {
-            RenderingHints qualityHints = new RenderingHints(RenderingHints.
+            qualityHints = new RenderingHints(RenderingHints.
                     KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setRenderingHints(qualityHints);
         } else {
-            RenderingHints qualityHints = new RenderingHints(RenderingHints.
+            qualityHints = new RenderingHints(RenderingHints.
                     KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_OFF);
-            g2.setRenderingHints(qualityHints);
 
         }
+        g2.setRenderingHints(qualityHints);
     }
 
     void paint(Graphics2D g2) {
@@ -276,8 +283,8 @@ public class DrawBase {
     }
 
     final public void drawPerpFoot(Graphics2D g2, Vector vlist, int type) { // 0: draw ,1: ps
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             double x, y;
             int n = cs.GetConstraintType();
             switch (n) {
@@ -391,15 +398,15 @@ public class DrawBase {
             return;
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            CClass cc = (CClass) list.get(i);
+        for (Object o : list) {
+            CClass cc = (CClass) o;
             cc.draw(g2);
         }
     }
 
     final public void drawPointNameLocation(CPoint p, Graphics2D g2) {
-        g2.drawString("(x: " + new Integer((int) p.getx()).toString() + ", y: " +
-                new Integer((int) p.gety()).toString() + ")",
+        g2.drawString("(x: " + (int) p.getx() + ", y: " +
+                        (int) p.gety() + ")",
                 (int) p.getx() + 23, (int) p.gety() - 5);
     }
 
@@ -452,11 +459,7 @@ public class DrawBase {
         boolean isleft = false;
 
         if (Math.abs(rx) < CMisc.ZERO) {
-            if (ry * (p1.getx() - p.getx()) > 0) {
-                isleft = false;
-            } else {
-                isleft = true;
-            }
+            isleft = !(ry * (p1.getx() - p.getx()) > 0);
             r = Math.abs(p1.getx() - p.getx());
         } else {
             double k = ry / rx;
@@ -579,11 +582,7 @@ public class DrawBase {
         boolean isleft = false;
 
         if (Math.abs(rx) < CMisc.ZERO) {
-            if (ry * (p1.getx() - p.getx()) > 0) {
-                isleft = false;
-            } else {
-                isleft = true;
-            }
+            isleft = !(ry * (p1.getx() - p.getx()) > 0);
             r = Math.abs(p1.getx() - p.getx());
         } else {
             double k = ry / rx;
@@ -728,8 +727,8 @@ public class DrawBase {
     }
 
     public void drawSelect(Vector list, Graphics2D g2) {
-        for (int i = 0; i < list.size(); i++) {
-            CClass cc = (CClass) list.get(i);
+        for (Object o : list) {
+            CClass cc = (CClass) o;
             if (cc != null)
                 cc.draw(g2, true);
         }
@@ -782,8 +781,8 @@ public class DrawBase {
             return null;
         }
 
-        for (int i = 0; i < circlelist.size(); i++) {
-            Circle cc = (Circle) circlelist.get(i);
+        for (Object o : circlelist) {
+            Circle cc = (Circle) o;
             if (cc.points.contains(p2) && cc.o == p1) {
                 return cc;
             }
@@ -795,8 +794,8 @@ public class DrawBase {
 
     int getEMarkNum() {
         int k = 0;
-        for (int i = 0; i < otherlist.size(); i++) {
-            if (otherlist.get(i) instanceof Cedmark) {
+        for (Object o : otherlist) {
+            if (o instanceof Cedmark) {
                 k++;
             }
         }
@@ -848,8 +847,8 @@ public class DrawBase {
             }
         }
 
-        for (int i = 0; i < textlist.size(); i++) {
-            CText t = (CText) textlist.get(i);
+        for (Object o : textlist) {
+            CText t = (CText) o;
             Dimension dm = t.getTextDimension();
             int w = (int) dm.getWidth();
             int h = (int) dm.getHeight();
@@ -1023,7 +1022,6 @@ public class DrawBase {
         double d3 = collv(p, p3, p1);
 
         return d1 * d2 > 0 && d2 * d3 > 0 && d1 * d3 > 0;
-
     }
 
     public static double areaTriangle(CPoint p1, CPoint p2, CPoint p3) {
@@ -1032,8 +1030,6 @@ public class DrawBase {
         double c = DrawBase.sdistance(p3, p2);
 
         return Math.sqrt(a * a * c * c - Math.pow(a * a + c * c - b * b, 2) / 4);
-
-
     }
 
     static boolean check_angle_less(CPoint p1, CPoint p2, CPoint p3, CPoint p4, CPoint p5, CPoint p6) {
@@ -1108,7 +1104,6 @@ public class DrawBase {
     static boolean nearPt(double x, double y, CPoint pt) {
         return Math.abs(x - pt.getx()) < CMisc.PIXEPS && Math.abs(y - pt.gety()) < CMisc.PIXEPS;
     }
-
 
     double[] get_pt_dmcr(double x1, double y1, double x2, double y2, double x, double y) {
 
@@ -1446,8 +1441,8 @@ public class DrawBase {
     }
 
     public CTMark findCTMark(CPoint p1, CPoint p2, CPoint p3, CPoint p4) {
-        for (int i = 0; i < otherlist.size(); i++) {
-            CClass c = (CClass) otherlist.get(i);
+        for (Object o : otherlist) {
+            CClass c = (CClass) o;
             if (c.get_type() == CClass.TMARK) {
                 CTMark m = (CTMark) c;
                 if (m.ln1.containPTs(p1, p2) && m.ln2.containPTs(p3, p4))
@@ -1461,8 +1456,8 @@ public class DrawBase {
     }
 
     public boolean find_tmark(CPoint p1, CPoint p2, CPoint p3, CPoint p4) {
-        for (int i = 0; i < flashlist.size(); i++) {
-            JFlash f = (JFlash) flashlist.get(i);
+        for (Object o : flashlist) {
+            JFlash f = (JFlash) o;
             if (f instanceof JTlineFlash) {
                 JTlineFlash t = (JTlineFlash) f;
                 if (t.containPt(p1) && t.containPt(p2) && t.containPt(p3) && t.containPt(p4))
@@ -1473,8 +1468,8 @@ public class DrawBase {
     }
 
     public boolean containFreezedPoint() {
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint p = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint p = (CPoint) o;
             if (p.isFreezed()) {
                 return true;
             }
@@ -1483,8 +1478,8 @@ public class DrawBase {
     }
 
     public void unfreezeAllPoints() {
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint p = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint p = (CPoint) o;
             if (p.isFreezed()) {
                 p.setFreezed(false);
             }
@@ -1492,8 +1487,8 @@ public class DrawBase {
     }
 
     public boolean isFreezed() {
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint p = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint p = (CPoint) o;
             if (p.isFreezed()) {
                 gxInstance.setTextLabel2("The diagram is freezed, use right click menu to unfreeze!");
                 return true;
@@ -1503,9 +1498,9 @@ public class DrawBase {
     }
 
     public void setAllFreezed() {
-        for (int i = 0; i < pointlist.size(); i++) {
+        for (Object o : pointlist) {
             {
-                CPoint p = (CPoint) pointlist.get(i);
+                CPoint p = (CPoint) o;
                 p.setFreezed(true);
             }
         }
@@ -1520,8 +1515,8 @@ public class DrawBase {
         double r = CMisc.ZOOM_RATIO;
         r = 1 + (r - 1) / zz;
 
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint p = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint p = (CPoint) o;
             p.setXY(p.getx() * 1.0 / r + (1.0 - 1.0 / r) * x, p.gety() * 1.0 / r + (1.0 - 1.0 / r) * y);
         }
     }
@@ -1539,8 +1534,8 @@ public class DrawBase {
     }
 
     public void hvCatchPoint() {
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint pt = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint pt = (CPoint) o;
             if (DrawBase.sdistance(CatchPoint, pt) > CMisc.PIXEPS_PT) {
                 if (Math.abs(pt.getx() - CatchPoint.getx()) < CMisc.PIXEPS_PT / 2) {
                     if (CatchType == 3) {
@@ -1560,8 +1555,8 @@ public class DrawBase {
     }
 
     public CPoint getCatchHVPoint(int CatchType) {
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint pt = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint pt = (CPoint) o;
             if (DrawBase.sdistance(CatchPoint, pt) > CMisc.PIXEPS_PT) {
                 if (CatchType == 2 && Math.abs(pt.getx() - CatchPoint.getx()) < CMisc.PIXEPS_PT / 2) {
                     return pt;
@@ -1577,8 +1572,8 @@ public class DrawBase {
         if (CatchType != 2 && CatchType != 3 && CatchType != 4)
             return;
 
-        for (int i = 0; i < pointlist.size(); i++) {
-            CPoint pt = (CPoint) pointlist.get(i);
+        for (Object o : pointlist) {
+            CPoint pt = (CPoint) o;
             if (DrawBase.sdistance(pv, pt) > CMisc.PIXEPS_PT) {
                 if ((CatchType == 2 || CatchType == 4) && Math.abs(pt.getx() - pv.getx()) < CMisc.PIXEPS_PT / 2) {
                     pv.setXY(pt.getx(), pv.gety());

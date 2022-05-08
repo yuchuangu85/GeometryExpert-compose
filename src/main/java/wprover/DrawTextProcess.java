@@ -290,7 +290,7 @@ public class DrawTextProcess extends DrawProcess {
 
                 if (!addFreePt(pt)) {
                     nd++;
-                    optmizePolynomial();
+                    optimizePolynomial();
                 }
             }
             break;

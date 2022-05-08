@@ -183,8 +183,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         CTrackPt = pt;
 
         boolean r = false;
-        for (int i = 0; i < tracelist.size(); i++) {
-            CTrace tr = (CTrace) tracelist.get(i);
+        for (Object o : tracelist) {
+            CTrace tr = (CTrace) o;
             if (tr.isTracePt(CTrackPt)) {
                 r = true;
                 break;
@@ -199,8 +199,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
     }
 
-
-    public param getParameterByindex(int index) {
+    public param getParameterByIndex(int index) {
         for (int i = 0; i < paraCounter - 1; i++) {
             if (parameter[i].xindex == index) {
                 return parameter[i];
@@ -224,9 +223,9 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         return constraintlist;
     }
 
-    public Constraint getConstraintByid(int id) {
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+    public Constraint getConstraintById(int id) {
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             if (cs.id == id) {
                 return cs;
             }
@@ -234,11 +233,11 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         return null;
     }
 
-    public CLine getLineByid(int id) {
+    public CLine getLineById(int id) {
         return (CLine) this.getObjectInListById(id, linelist);
     }
 
-    public Circle getCircleByid(int id) {
+    public Circle getCircleById(int id) {
         return (Circle) this.getObjectInListById(id, circlelist);
     }
 
@@ -248,7 +247,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
 
-    public CAngle getAngleByid(int id) {
+    public CAngle getAngleById(int id) {
         return (CAngle) this.getObjectInListById(id, anglelist);
     }
 
@@ -423,7 +422,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         save_id = CMisc.id_count;
     }
 
-    public boolean isitSaved() {
+    public boolean isItSaved() {
         return needSave || save_id >= CMisc.id_count;
     }
 
@@ -490,7 +489,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
     }
 
-    public TPoly getCopyPolylist() {
+    public TPoly getCopyPolyList() {
         TPoly pl = polylist;
         TPoly plist = null;
 
@@ -505,7 +504,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         return plist;
     }
 
-    public TPoly getCopyPolyBacklist() {
+    public TPoly getCopyPolyBackList() {
         TPoly pl = pblist;
         TPoly plist = null;
 
@@ -731,17 +730,17 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 //                System.out.println("x" + parameter[i].xindex + " = " + parameter[i].value);
 //            }
 //        }
-        calv_parameter();
+        calvParameter();
 
-        for (int dx = 0; dx < pointlist.size(); dx++) {
-            CPoint p = (CPoint) pointlist.get(dx);
+        for (Object o : pointlist) {
+            CPoint p = (CPoint) o;
             if (!(success = calculate_a_point(p, true)))
                 break;
         }
 
 //        backup_parameter(success);
         {
-            if (success == false) {
+            if (!success) {
                 for (int i = 0; i < paraCounter; i++) {
                     if (parameter[i] != null)
                         parameter[i].value = paraBackup[i];
@@ -764,20 +763,20 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
         translate_back(x1, y1, sin, cos);
 
-        for (int i = 0; i < updaterListeners.size(); i++) {
-            DiagramUpdater d = (DiagramUpdater) updaterListeners.get(i);
+        for (Object updaterListener : updaterListeners) {
+            DiagramUpdater d = (DiagramUpdater) updaterListener;
             d.UpdateDiagram();
         }
-        calculate_trace();
-        recal_allFlash();
+        calculateTrace();
+        recalAllFlash();
         calculate_text();
 
         return success;
     }
 
     public void calculate_text() {
-        for (int i = 0; i < textlist.size(); i++) {
-            CText t = (CText) textlist.get(i);
+        for (Object o : textlist) {
+            CText t = (CText) o;
             if (t.getType() == CText.VALUE_TEXT) {
                 double r = calculate(t.tvalue);
                 t.tvalue.dvalue = roundn(r, t.m_dash);
@@ -794,7 +793,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public void backup_parameter(boolean success, double x, double y, double sin, double cos) {
-        if (success == false) {
+        if (!success) {
             for (int i = 0; i < paraCounter; i++) {
                 if (parameter[i] != null)
                     parameter[i].value = paraBackup[i];
@@ -827,8 +826,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                 p.setXY(t1 * cos - t2 * sin, t1 * sin + t2 * cos);
             }
 
-            for (int i = 0; i < pointlist.size(); i++) {
-                CPoint p = (CPoint) pointlist.get(i);
+            for (Object o : pointlist) {
+                CPoint p = (CPoint) o;
                 p.x1.value += x1;
                 p.y1.value += y1;
             }
@@ -836,14 +835,14 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
     }
 
-    public void recal_allFlash() {
-        for (int i = 0; i < flashlist.size(); i++) {
-            JFlash f = (JFlash) flashlist.get(i);
+    public void recalAllFlash() {
+        for (Object o : flashlist) {
+            JFlash f = (JFlash) o;
             f.recalculate();
         }
     }
 
-    public void calculate_trace() {
+    public void calculateTrace() {
 
         int nt = tracelist.size();
         if (nt == 0)
@@ -884,7 +883,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                     double xt = x + dx * j;
                     double yt = y + dy * j;
                     po.setXY(xt, yt);
-                    calculate_allpt(false);
+                    calculateAllpt(false);
                     t.addTracePoint(j, p.getx(), p.gety());
                 }
             } else if (c instanceof Circle) {
@@ -899,14 +898,14 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                     double xt = r * cosx + ox;
                     double yt = r * sinx + oy;
                     po.setXY(xt, yt);
-                    calculate_allpt(false);
+                    calculateAllpt(false);
                     t.addTracePoint(j, p.getx(), p.gety());
                 }
                 t.softEdge();
             }
             po.setXY(xs, ys);
         }
-        calculate_allpt(true);
+        calculateAllpt(true);
 
         CAL_MODE = 0;
     }
@@ -942,7 +941,6 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
     }
 
-
     public void setParameterValue(double[] dd) {
         for (int i = 0; i < dd.length; i++) {
             if (parameter[i] != null)
@@ -958,8 +956,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         }
     }
 
-
-    public Vector calculate_allResults() {     // calculate all results from the polygons.
+    public Vector calculateAllResults() {     // calculate all results from the polygons.
         double x1, y1, sin, cos;
         x1 = y1 = 0;
         sin = 0;
@@ -1040,7 +1037,6 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
             }
         }
 
-
         for (int i = 0; i < vlist.size(); i++) {  // remove the common point.
             double[] kk = (double[]) vlist.get(i);
             for (int j = 0; j < n; j++) {
@@ -1076,7 +1072,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         return vlist;
     }
 
-    public boolean calculate_allpt(boolean d) {
+    public boolean calculateAllpt(boolean d) {
         double x1, y1, sin, cos;
         x1 = y1 = 0;
         sin = 0;
@@ -1126,10 +1122,10 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         dlg.setVisible(true);
     }
 
-    public void calv_parameter() {
+    public void calvParameter() {
         int n = 0;
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             if (cs.GetConstraintType() == Constraint.SPECIFIC_ANGEL) {
                 n++;
             }
@@ -1152,8 +1148,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public Circle fd_pt_on_which_circle(CPoint pt) {
-        for (int i = 0; i < circlelist.size(); i++) {
-            Circle cr = (Circle) circlelist.get(i);
+        for (Object value : circlelist) {
+            Circle cr = (Circle) value;
             if (cr.getSidePoint() != null) {
                 CPoint o = cr.o;
                 CPoint p1 = cr.getSidePoint();
@@ -1167,8 +1163,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
 
 
     public CLine fd_pt_on_which_line(CPoint pt) {
-        for (int i = 0; i < linelist.size(); i++) {
-            CLine ln = (CLine) linelist.get(i);
+        for (Object o : linelist) {
+            CLine ln = (CLine) o;
             if (ln.containPT(pt) && ln.getPtsSize() >= 2) {
                 CPoint p1 = ln.getfirstPoint();
                 CPoint p2 = ln.getSecondPoint(p1);
@@ -1226,8 +1222,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         return null;
     }
 
-
-    public double[] calculate_oline(CPoint pt) {
+    public double[] calculateOline(CPoint pt) {
         if (this.CurrentAction == MOVE && this.SelectList.contains(pt) || CAL_MODE == 1)
             return null;
 
@@ -1350,7 +1345,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
             }
 
 
-        } else if (type == Constraint.INTER_CC) {
+        } else {
             Circle cr1 = (Circle) cs.getelement(1);
             Circle cr2 = (Circle) cs.getelement(2);
             CPoint o1 = cr1.o;
@@ -1410,7 +1405,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         TMono m2 = pm2.m;
 
         if (m1 != null && m2 == null && poly.deg(m1) == 1 || m1 == null && m2 != null && poly.deg(m2) == 1) {
-            double[] r = calculate_oline(cp);
+            double[] r = calculateOline(cp);
             if (r != null) {
                 cp.x1.value = r[0];
                 cp.y1.value = r[1];
@@ -1726,7 +1721,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
             JOptionPane.showMessageDialog(gxInstance, ee.getMessage(), ee.toString(), JOptionPane.ERROR_MESSAGE);
         }
 
-        optmizePolynomial();
+        optimizePolynomial();
         SetVarable();
 
         if (!calcu) {
@@ -1735,7 +1730,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         }
     }
 
-    public void optmizePolynomial() {
+    public void optimizePolynomial() {
         if (!CMisc.POINT_TRANS)
             return;
         if (pointlist.size() < 2) return;
@@ -1746,8 +1741,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         addZeron(p1.y1.xindex, zeron);
         addZeron(p2.x1.xindex, zeron);
 
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             int t = cs.GetConstraintType();
             if (t == Constraint.PONLINE || t == Constraint.INTER_LC) {
                 CPoint t1 = (CPoint) cs.getelement(0);
@@ -1804,8 +1799,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                 CPoint p1 = (CPoint) pointlist.get(0);
                 x1 = p1.x1.value;
                 y1 = p1.y1.value;
-                for (int i = 0; i < pointlist.size(); i++) {
-                    CPoint px = (CPoint) pointlist.get(i);
+                for (Object o : pointlist) {
+                    CPoint px = (CPoint) o;
                     px.x1.value = px.x1.value - x1;
                     px.y1.value = px.y1.value - y1;
                 }
@@ -1836,15 +1831,15 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
             return false;
 
         lva = poly.lv(m2);
-        for (int i = 0; i < result.length; i++) {
-            parameter[p.x1.xindex - 1].value = result[i];
+        for (double v : result) {
+            parameter[p.x1.xindex - 1].value = v;
             double[] r = poly.calculv(m2, parameter);
             if (r == null)
                 r = this.calform(lva, parameter);
 
 
             for (int j = 0; j < r.length; j++) {
-                CPoint pt = this.CreateATempPoint(result[i], r[j]);
+                CPoint pt = this.CreateATempPoint(v, r[j]);
                 solutionlist.add(pt);
             }
         }
@@ -1859,20 +1854,20 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                 px.setXY(t1 * cos - t2 * sin, t1 * sin + t2 * cos);
             }
 
-            for (int i = 0; i < pointlist.size(); i++) {
-                CPoint px = (CPoint) pointlist.get(i);
+            for (Object o : pointlist) {
+                CPoint px = (CPoint) o;
                 px.x1.value += x1;
                 px.y1.value += y1;
             }
-            for (int i = 0; i < solutionlist.size(); i++) {
-                CPoint px = (CPoint) solutionlist.get(i);
+            for (Object o : solutionlist) {
+                CPoint px = (CPoint) o;
                 t1 = px.getx();
                 t2 = px.gety();
                 px.setXY(t1 * cos - t2 * sin, t1 * sin + t2 * cos);
             }
 
-            for (int i = 0; i < solutionlist.size(); i++) {
-                CPoint px = (CPoint) solutionlist.get(i);
+            for (Object o : solutionlist) {
+                CPoint px = (CPoint) o;
                 px.x1.value += x1;
                 px.y1.value += y1;
             }
@@ -1930,9 +1925,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
             plist = plist.getNext();
         }
         paraCounter -= 2;
-        return;
     }
-
 
     public void SetDimension(double x, double y) {
         this.Width = x;
@@ -1984,8 +1977,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public Cedmark fd_edmark(CPoint p1, CPoint p2) {
-        for (int i = 0; i < otherlist.size(); i++) {
-            Object obj = otherlist.get(i);
+        for (Object obj : otherlist) {
             if (obj instanceof Cedmark) {
                 Cedmark ln = (Cedmark) obj;
                 if ((ln.p1 == p1 && ln.p2 == p2) || (ln.p2 == p1 && ln.p1 == p2)) {
@@ -1997,10 +1989,9 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
 
-    public void setcurrentStatus(int status) {
+    public void setCurrentStatus(int status) {
         STATUS = status;
     }
-
 
     public boolean saveProveText(String path) throws IOException {
         if (cpfield == null) {
@@ -2270,9 +2261,9 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         }
         Vector v = dlg.getSpecifcAngle();
 
-        for (int i = 0; i < v.size(); i++) {
-            Integer in = (Integer) v.get(i);
-            int value = in.intValue();
+        for (Object o : v) {
+            Integer in = (Integer) o;
+            int value = in;
             param p1 = parameter[paraCounter - 1] = new param(paraCounter, 0);
             p1.type = value;
             paraCounter++;
@@ -2296,8 +2287,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public param getParaForSpecificAngle(int ang) {
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             if (cs.GetConstraintType() == Constraint.SPECIFIC_ANGEL) {
                 if (cs.proportion == ang) {
                     param pm = (param) cs.getelement(0);
@@ -2311,8 +2302,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     public Vector getSpecificAngleList() {
         Vector v = new Vector();
 
-        for (int i = 0; i < constraintlist.size(); i++) {
-            Constraint cs = (Constraint) constraintlist.get(i);
+        for (Object o : constraintlist) {
+            Constraint cs = (Constraint) o;
             if (cs.GetConstraintType() == Constraint.SPECIFIC_ANGEL) {
                 v.add(new Integer(cs.proportion));
             }
@@ -2466,8 +2457,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public void SelectFromAList(Vector v1, Vector v2, double x, double y) { // from v1 to v2
-        for (int i = 0; i < v2.size(); i++) {
-            CClass cc = (CClass) v2.get(i);
+        for (Object o : v2) {
+            CClass cc = (CClass) o;
             if (cc.select(x, y)) {
                 v1.add(cc);
             }
@@ -2539,8 +2530,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public void SelectNameText(Vector v, double x, double y) {
-        for (int i = 0; i < textlist.size(); i++) {
-            CText text = (CText) textlist.get(i);
+        for (Object o : textlist) {
+            CText text = (CText) o;
 
             if (text.getType() == CText.NAME_TEXT && text.select(x, y)) {
                 v.add(text);
@@ -2600,8 +2591,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
     }
 
     public void getSmartPV(CPoint p1, CPoint p2) {
-        int x, y;
-        x = y = 0;
+        int x = 0;
+        int y = 0;
         if (p1 == null || p2 == null) {
             return;
         }
@@ -3485,8 +3476,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                     }
                     CPoint p1 = (CPoint) SelectList.get(0);
                     CPoint pp = this.CreateANewPoint(x, y);
-                    Integer t1 = new Integer(v1);
-                    Integer t2 = new Integer(v2);
+                    Integer t1 = v1;
+                    Integer t2 = v2;
                     Constraint cs = new Constraint(Constraint.LRATIO, pp, p1, p, t1, t2);
                     CPoint pu = this.addADecidedPointWithUnite(pp);
                     if (pu == null) {
@@ -3500,8 +3491,8 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
                     }
 
                     CLine ln = null;
-                    for (int i = 0; i < linelist.size(); i++) {
-                        CLine t = (CLine) linelist.get(i);
+                    for (Object o : linelist) {
+                        CLine t = (CLine) o;
                         if (t.sameLine(p1, p)) {
                             ln = t;
                             break;
@@ -5523,7 +5514,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         pointlist.add(p);
         textlist.add(p.getPText());
         if (pointlist.size() == 2)
-            optmizePolynomial();
+            optimizePolynomial();
         this.reCalculate();
     }
 
@@ -8590,7 +8581,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         v.addAll(constraintlist);
         constraintlist.clear();
         GeoPoly.clearZeroN();
-        this.optmizePolynomial();
+        this.optimizePolynomial();
         for (int i = 0; i < v.size(); i++) {
             Constraint cs = (Constraint) v.get(i);
             if (cs.is_poly_genereate) {
@@ -8972,7 +8963,7 @@ DrawProcess extends DrawBase implements Printable, ActionListener {
         }
 
 
-        this.optmizePolynomial();
+        this.optimizePolynomial();
 
         size = in.readInt();
         for (int i = 0; i < size; i++) {

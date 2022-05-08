@@ -1969,19 +1969,19 @@ public class Constraint {
                 }
                 break;
                 case 2:
-                    elementlist.add(dp.getLineByid(d));
+                    elementlist.add(dp.getLineById(d));
                     break;
                 case 3:
-                    elementlist.add(dp.getCircleByid(d));
+                    elementlist.add(dp.getCircleById(d));
                     break;
                 case 4:
                     elementlist.add(dp.getOjbectById(d));
                     break;
                 case 5:
-                    elementlist.add(dp.getAngleByid(d));
+                    elementlist.add(dp.getAngleById(d));
                     break;
                 case 6:
-                    elementlist.add(dp.getParameterByindex(d));
+                    elementlist.add(dp.getParameterByIndex(d));
                     break;
                 case 7:
                     elementlist.add(dp.getOjbectById(d));

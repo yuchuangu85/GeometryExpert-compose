@@ -417,7 +417,7 @@ public class Circle extends CClass {
             size = in.readInt();
             for (int i = 0; i < size; i++) {
                 int dx = in.readInt();
-                cons.add(dp.getConstraintByid(dx));
+                cons.add(dp.getConstraintById(dx));
             }
         } else {
             super.Load(in, dp);
@@ -435,7 +435,7 @@ public class Circle extends CClass {
             size = in.readInt();
             for (int i = 0; i < size; i++) {
                 int dx = in.readInt();
-                cons.add(dp.getConstraintByid(dx));
+                cons.add(dp.getConstraintById(dx));
             }
 
         }

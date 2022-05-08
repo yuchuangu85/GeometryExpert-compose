@@ -162,9 +162,9 @@ public class CTMark extends CClass {
     public void Load(DataInputStream in, DrawProcess dp) throws IOException {
         super.Load(in, dp);
         int d = in.readInt();
-        ln1 = dp.getLineByid(d);
+        ln1 = dp.getLineById(d);
         d = in.readInt();
-        ln2 = dp.getLineByid(d);
+        ln2 = dp.getLineById(d);
         if (CMisc.version_load_now >= 0.053)
             length = in.readInt();
         else

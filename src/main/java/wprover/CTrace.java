@@ -55,7 +55,6 @@ public class CTrace extends CClass {
 
     }
 
-
     public void setDLns(boolean r) {
         dlns = r;
     }
@@ -65,9 +64,7 @@ public class CTrace extends CClass {
     }
 
     public void setNumPts(int n) {
-        if (n < MAX_POINT)
-            Num = n;
-        else Num = MAX_POINT;
+        Num = Math.min(n, MAX_POINT);
     }
 
     public void draw(Graphics2D g2, boolean selected) {
@@ -105,7 +102,7 @@ public class CTrace extends CClass {
 
         int dx = x - x1;
         int dy = y - y1;
-        if(dx > MAXLEN || dx < - MAXLEN || dy > MAXLEN || dy < -MAXLEN)
+        if (dx > MAXLEN || dx < -MAXLEN || dy > MAXLEN || dy < -MAXLEN)
             return;
 
         g2.drawLine(x, y, x1, y1);
@@ -144,21 +141,19 @@ public class CTrace extends CClass {
     public void SavePS(FileOutputStream fp, int stype) throws IOException {
         if (!visible) return;
 
-         for (int i = 0; i < Num; i++) {
-                    if (dlns) {
-                if (oObj != null && oObj.get_type() == CClass.CIRCLE || i < Num -1)
-                {
+        for (int i = 0; i < Num; i++) {
+            if (dlns) {
+                if (oObj != null && oObj.get_type() == CClass.CIRCLE || i < Num - 1) {
 
                     int pos1x = PX[i];
                     int pos1y = PY[i];
                     int pos2x = PX[(i + 1) % Num];
                     int pos2y = PY[(i + 1) % Num];
 
-
-                        String st1 = pos1x + " " + -pos1y + " moveto " + pos2x + " " + -pos2y + " lineto \n";
-                        fp.write(st1.getBytes());
-                        String st3 = "Color" + m_color + " stroke\n";
-                        fp.write(st3.getBytes());
+                    String st1 = pos1x + " " + -pos1y + " moveto " + pos2x + " " + -pos2y + " lineto \n";
+                    fp.write(st1.getBytes());
+                    String st3 = "Color" + m_color + " stroke\n";
+                    fp.write(st3.getBytes());
                 }
 
             }

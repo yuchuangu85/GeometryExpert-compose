@@ -451,15 +451,15 @@ public class CPoint extends CClass {
             type = in.readInt();
 
             int ix = in.readInt();
-            x1 = dp.getParameterByindex(ix);
+            x1 = dp.getParameterByIndex(ix);
             int iy = in.readInt();
-            y1 = dp.getParameterByindex(iy);
+            y1 = dp.getParameterByIndex(iy);
             /*OnCircleOrOnLine = */
             in.readInt();
             int size = in.readInt();
             for (int i = 0; i < size; i++) {
                 int id = in.readInt();
-                cons.add(dp.getConstraintByid(id));
+                cons.add(dp.getConstraintById(id));
             }
             visible = in.readBoolean();
 
@@ -471,15 +471,15 @@ public class CPoint extends CClass {
 
             type = in.readInt();
             int ix = in.readInt();
-            x1 = dp.getParameterByindex(ix);
+            x1 = dp.getParameterByIndex(ix);
             int iy = in.readInt();
-            y1 = dp.getParameterByindex(iy);
+            y1 = dp.getParameterByIndex(iy);
             /*OnCircleOrOnLine = */
             in.readInt();
             int size = in.readInt();
             for (int i = 0; i < size; i++) {
                 int id = in.readInt();
-                Constraint cs = dp.getConstraintByid(id);
+                Constraint cs = dp.getConstraintById(id);
                 addcstoPoint(cs);
             }
             visible = in.readBoolean();

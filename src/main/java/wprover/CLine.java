@@ -1412,7 +1412,7 @@ public class CLine extends CClass {
             int nc = 0;
             for (int i = 0; i < size; i++) {
                 int d = in.readInt();
-                Constraint c = dp.getConstraintByid(d);
+                Constraint c = dp.getConstraintById(d);
                 if (c == null)
                     nc++;
                 else
@@ -1435,7 +1435,7 @@ public class CLine extends CClass {
             size = in.readInt();
             for (int i = 0; i < size; i++) {
                 int d = in.readInt();
-                cons.add(dp.getConstraintByid(d));
+                cons.add(dp.getConstraintById(d));
             }
         }
 

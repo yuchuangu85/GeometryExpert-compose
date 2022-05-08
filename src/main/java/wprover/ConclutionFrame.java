@@ -124,7 +124,7 @@ public class ConclutionFrame extends JBaseDialog implements  ActionListener, Win
         for (int i = 0; i < vl.size(); i++)
             obj[i] = vl.get(i);
 
-        TPoly pclist = dp.getCopyPolyBacklist();
+        TPoly pclist = dp.getCopyPolyBackList();
 
 
         pclist = poly.OptimizePoly(pclist);

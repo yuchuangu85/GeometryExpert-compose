@@ -451,7 +451,7 @@ public class MiscDialog extends JBaseDialog implements FocusListener, ActionList
                     JSlider slider = (JSlider) e.getSource();
                     int n = slider.getValue();
                     CMisc.setMoveStep(n);
-                    gxInstance.dp.recal_allFlash();
+                    gxInstance.dp.recalAllFlash();
                 }
             });
             this.add(p1);
