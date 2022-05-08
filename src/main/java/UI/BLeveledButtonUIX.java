@@ -1,9 +1,11 @@
 package UI;
 
+import java.awt.Graphics;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.border.Border;
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,8 +15,8 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class BLeveledButtonUIX extends BlueishButtonUI {
-    private static Border border1 = BorderFactory.createRaisedBevelBorder();
-    private static Border border2 = BorderFactory.createEtchedBorder();//createEtchedBorder(Color.white,Color.gray.brighter());//.createMatteBorder(2,2,2,2,Color.LIGHT_GRAY);//.createEmptyBorder(2, 2, 2, 2);
+    private static final Border border1 = BorderFactory.createRaisedBevelBorder();
+    private static final Border border2 = BorderFactory.createEtchedBorder();//createEtchedBorder(Color.white,Color.gray.brighter());//.createMatteBorder(2,2,2,2,Color.LIGHT_GRAY);//.createEmptyBorder(2, 2, 2, 2);
 
     public BLeveledButtonUIX() {
         super();

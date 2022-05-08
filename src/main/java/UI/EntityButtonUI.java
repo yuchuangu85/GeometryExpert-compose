@@ -1,17 +1,22 @@
 package UI;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonModel;
+import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.*;
 
 
 public class EntityButtonUI extends BasicButtonUI {
 
-    private static Color BackgroundOver = new Color(224, 232, 246);
-    private static Color BorderOver = new Color(152, 180, 226);
+    private static final Color BackgroundOver = new Color(224, 232, 246);
+    private static final Color BorderOver = new Color(152, 180, 226);
 
-    private static Color BackgroundSelected = new Color(193, 210, 238);
-    private static Color BorderSelected = new Color(49, 106, 197);
+    private static final Color BackgroundSelected = new Color(193, 210, 238);
+    private static final Color BorderSelected = new Color(49, 106, 197);
 //    private static DropShadowBorder dsp= new DropShadowBorder();
 
     private int type = 0; // 0. all, 1. left, 2. right, 3. top, 4, bottom.

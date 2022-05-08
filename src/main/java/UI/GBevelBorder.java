@@ -1,7 +1,13 @@
 package UI;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+
 import javax.swing.border.SoftBevelBorder;
-import java.awt.*;
 
 
 public class GBevelBorder extends SoftBevelBorder {
@@ -9,7 +15,6 @@ public class GBevelBorder extends SoftBevelBorder {
     final private static BasicStroke bstroke = new BasicStroke(0.5f);
 
     int type = 0;
-
 
     public GBevelBorder(int t) {
         super(t);

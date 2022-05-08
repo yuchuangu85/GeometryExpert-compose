@@ -1,10 +1,12 @@
 package UI;
 
-import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.*;
+import java.awt.Graphics;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.border.Border;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,8 +18,8 @@ import java.awt.*;
 
 public class BLeveledButtonUI extends BasicButtonUI {
 
-    private static Border border1 = BorderFactory.createRaisedBevelBorder();
-    private static Border border2 = BorderFactory.createEtchedBorder();//createEtchedBorder(Color.white,Color.gray.brighter());//.createMatteBorder(2,2,2,2,Color.LIGHT_GRAY);//.createEmptyBorder(2, 2, 2, 2);
+    private static final Border border1 = BorderFactory.createRaisedBevelBorder();
+    private static final Border border2 = BorderFactory.createEtchedBorder();//createEtchedBorder(Color.white,Color.gray.brighter());//.createMatteBorder(2,2,2,2,Color.LIGHT_GRAY);//.createEmptyBorder(2, 2, 2, 2);
 
     public BLeveledButtonUI() {
         super();
@@ -38,7 +40,7 @@ public class BLeveledButtonUI extends BasicButtonUI {
         if (b1) {
             //border1.paintBorder(button,g,button.getX(),button.getY(),button.getWidth(),button.getHeight());
             button.setBorder(border1);
-        }else button.setBorder(border2);
+        } else button.setBorder(border2);
 
         super.paint(g, c);
     }

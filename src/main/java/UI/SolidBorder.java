@@ -1,16 +1,20 @@
 package UI;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
+
 import javax.swing.border.Border;
-import java.awt.*;
 
 
 public class SolidBorder implements Border {
+
     protected Color topColor = Color.white;
     protected Color bottomColor = Color.gray;
 
     public SolidBorder() {
     }
-
 
     public Insets getBorderInsets(Component c) {
         return new Insets(2, 2, 2, 2);

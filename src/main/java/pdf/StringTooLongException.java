@@ -29,7 +29,7 @@ package pdf;
  * @version $Revision: 1.1 $ $Date: 2007/08/22 01:02:32 $
  */
 public class StringTooLongException extends Exception {
-  private String msg;
+  private final String msg;
 
 
   /**

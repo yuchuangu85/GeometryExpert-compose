@@ -21,6 +21,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,17 +43,17 @@ public class DropShadowBorder implements Border {
     }
 
     private static final Map<Integer, Map<Position, BufferedImage>> CACHE
-            = new HashMap<Integer, Map<Position, BufferedImage>>();
+            = new HashMap<>();
 
-    private Color lineColor;
-    private int lineWidth;
-    private int shadowSize;
-    private float shadowOpacity;
-    private int cornerSize;
-    private boolean showTopShadow;
-    private boolean showLeftShadow;
-    private boolean showBottomShadow;
-    private boolean showRightShadow;
+    private final Color lineColor;
+    private final int lineWidth;
+    private final int shadowSize;
+    private final float shadowOpacity;
+    private final int cornerSize;
+    private final boolean showTopShadow;
+    private final boolean showLeftShadow;
+    private final boolean showBottomShadow;
+    private final boolean showRightShadow;
 
     public DropShadowBorder() {
         this(UIManager.getColor("Control"), 1, 5);
@@ -223,9 +224,7 @@ public class DropShadowBorder implements Border {
             buffer.fill(rect);
             float blurry = 1.0f / (float) (shadowSize * shadowSize);
             float[] blurKernel = new float[shadowSize * shadowSize];
-            for (int i = 0; i < blurKernel.length; i++) {
-                blurKernel[i] = blurry;
-            }
+            Arrays.fill(blurKernel, blurry);
             ConvolveOp blur = new ConvolveOp(new Kernel(shadowSize, shadowSize, blurKernel));
             BufferedImage targetImage = new BufferedImage(imageWidth, imageWidth, BufferedImage.TYPE_INT_ARGB);
             ((Graphics2D) targetImage.getGraphics()).drawImage(image, blur, -(shadowSize / 2), -(shadowSize / 2));

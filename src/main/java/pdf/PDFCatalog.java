@@ -16,90 +16,90 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- * 
+ *
  */
 package pdf;
 
 import java.io.*;
 
 /**
- * <p>This class implements the PDF Catalog, 
+ * <p>This class implements the PDF Catalog,
  * also known as the root node</p>
  *
  * @author Peter T. Mount
  * @author Eric Z. Beard, ericzbeard@hotmail.com
  * @version $Revision: 1.2 $, $Date: 2007/08/26 18:56:35 $
  */
-public class PDFCatalog extends PDFObject
-{
-  /**
-   * The pages of the document
-   */
-  private PDFPageList pdfPageList;
-    
-  /**
-   * The outlines of the document
-   */
-  private PDFOutline outlines;
-  
-  /**
-   * The initial page mode
-   */
-  private int pagemode;
-  
-  /**
-   * This constructs a PDF Catalog object
-   *
-   * @param pdfPageList The PDFPageList object that's the root 
-   *        of the documents page tree
-   * @param pagemode How the document should appear when opened.
-   * Allowed values are USENONE, USEOUTLINES, USETHUMBS or FULLSCREEN.
-   */
-  public PDFCatalog(PDFPageList pdfPageList,int pagemode) {
-    super("/Catalog");
-    this.pdfPageList = pdfPageList;
-    this.pagemode = pagemode;
-  }
-  
-  /**
-   * This sets the root outline object
-   * @param outline The root outline
-   */
-  protected void setOutline(PDFOutline outline) {
-    this.outlines = outline;
-  }
-  
-  /**
-   * @param os OutputStream to send the object to
-   * @exception IOException on error
-   */
-  public void write(OutputStream os) throws IOException {
-    // Write the object header
-    writeStart(os);
-    
-    // now the objects body
-    
-    // the /Pages object
-    os.write("/Pages ".getBytes());
-    os.write(pdfPageList.toString().getBytes());
-    os.write("\n".getBytes());
-            
-    // the Outlines object
-    if(outlines!=null) {
-      //if(outlines.getLast()>-1) {
-      os.write("/Outlines ".getBytes());
-      os.write(outlines.toString().getBytes());
-      os.write("\n".getBytes());
-      //}
+public class PDFCatalog extends PDFObject {
+    /**
+     * The pages of the document
+     */
+    private final PDFPageList pdfPageList;
+
+    /**
+     * The outlines of the document
+     */
+    private PDFOutline outlines;
+
+    /**
+     * The initial page mode
+     */
+    private final int pageMode;
+
+    /**
+     * This constructs a PDF Catalog object
+     *
+     * @param pdfPageList The PDFPageList object that's the root
+     *                    of the documents page tree
+     * @param pageMode    How the document should appear when opened.
+     *                    Allowed values are USENONE, USEOUTLINES, USETHUMBS or FULLSCREEN.
+     */
+    public PDFCatalog(PDFPageList pdfPageList, int pageMode) {
+        super("/Catalog");
+        this.pdfPageList = pdfPageList;
+        this.pageMode = pageMode;
     }
-            
-    // the /PageMode setting
-    os.write("/PageMode ".getBytes());
-    os.write(PDFDocument.PDF_PAGE_MODES[pagemode].getBytes());
-    os.write("\n".getBytes());
-            
-    // finish off with its footer
-    writeEnd(os);
-  }
+
+    /**
+     * This sets the root outline object
+     *
+     * @param outline The root outline
+     */
+    protected void setOutline(PDFOutline outline) {
+        this.outlines = outline;
+    }
+
+    /**
+     * @param os OutputStream to send the object to
+     * @throws IOException on error
+     */
+    public void write(OutputStream os) throws IOException {
+        // Write the object header
+        writeStart(os);
+
+        // now the objects body
+
+        // the /Pages object
+        os.write("/Pages ".getBytes());
+        os.write(pdfPageList.toString().getBytes());
+        os.write("\n".getBytes());
+
+        // the Outlines object
+        if (outlines != null) {
+            //if(outlines.getLast()>-1) {
+            os.write("/Outlines ".getBytes());
+            os.write(outlines.toString().getBytes());
+            os.write("\n".getBytes());
+            //}
+        }
+
+        // the /PageMode setting
+        os.write("/PageMode ".getBytes());
+        os.write(PDFDocument.PDF_PAGE_MODES[pageMode].getBytes());
+        os.write("\n".getBytes());
+
+        // finish off with its footer
+        writeEnd(os);
+    }
 } // end class PDFCatalog
     
