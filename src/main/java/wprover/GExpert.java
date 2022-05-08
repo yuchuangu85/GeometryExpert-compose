@@ -284,6 +284,8 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
     }
 
     public void showWelcome() {
+        WelcomeDialog dialog = new WelcomeDialog(this);
+        dialog.setVisible(true);
     }
 
     public Font getDefaultFont() {

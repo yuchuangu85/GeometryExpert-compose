@@ -24,14 +24,14 @@ import util.ResourceUtil;
  * Time: 9:57:46
  * To change this template use File | Settings | File Templates.
  */
-public class welcomeDialog extends JPanel implements MouseListener {
+public class WelcomeDialog extends JPanel implements MouseListener {
 
     JLabel b2;
     Color color = new Color(206, 223, 242);
     GExpert gx;
 
 
-    public welcomeDialog(GExpert f) {
+    public WelcomeDialog(GExpert f) {
 
         gx = f;
         JPanel panex = new JPanel();
@@ -126,7 +126,7 @@ public class welcomeDialog extends JPanel implements MouseListener {
         JDialog dialog = new JDialog(gx.getFrame(), false);
         dlg = dialog;
         dialog.setUndecorated(true);
-        welcomeDialog w = this; //new welcomeDialog(gx);
+        WelcomeDialog w = this; //new welcomeDialog(gx);
         Dimension dm = w.getPreferredSize();
 
         dialog.getContentPane().add(w);
