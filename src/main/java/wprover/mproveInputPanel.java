@@ -1,16 +1,44 @@
 package wprover;
 
-import UI.EntityButtonUI;
-import UI.BLeveledButtonUI;
-
-import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.border.LineBorder;
-import javax.swing.border.Border;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Vector;
-import java.awt.*;
-import java.awt.event.*;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+import UI.BLeveledButtonUI;
+import UI.EntityButtonUI;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,9 +48,9 @@ import java.awt.event.*;
  * To change this template use File | Settings | File Templates.
  */
 public class mproveInputPanel extends JToolBar implements ActionListener {
-    public static ImageIcon icon_Right = GExpert.createImageIcon("images/dtree/right.gif");
-    public static ImageIcon icon_Wrong = GExpert.createImageIcon("images/dtree/wrong.gif");
-    public static ImageIcon icon_Question = GExpert.createImageIcon("images/dtree/question.gif");
+    public static ImageIcon icon_Right = ResourceUtil.createImageIcon("images/dtree/right.gif");
+    public static ImageIcon icon_Wrong = ResourceUtil.createImageIcon("images/dtree/wrong.gif");
+    public static ImageIcon icon_Question = ResourceUtil.createImageIcon("images/dtree/question.gif");
 
     JToggleButton bok, badd, bappend, bchild, bcancel;
 
@@ -239,7 +267,7 @@ public class mproveInputPanel extends JToolBar implements ActionListener {
         button.setAlignmentX(Component.LEFT_ALIGNMENT);
         button.setUI(new EntityButtonUI());
         ocPanel.add(button);
-        button = new JToggleButton(GExpert.createImageIcon("images/ptree/full_step.gif"));
+        button = new JToggleButton(ResourceUtil.createImageIcon("images/ptree/full_step.gif"));
         button.setActionCommand("Step");
         button.addActionListener(this);
         button.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -252,7 +280,7 @@ public class mproveInputPanel extends JToolBar implements ActionListener {
         button.addActionListener(this);
         button.setAlignmentX(Component.RIGHT_ALIGNMENT);
         button.setUI(ui);
-        ImageIcon upicon = GExpert.createImageIcon("images/dtree/up1.gif");
+        ImageIcon upicon = ResourceUtil.createImageIcon("images/dtree/up1.gif");
         ocPanel.add(Box.createHorizontalStrut(2));
         ocPanel.add(button);
         badd = button = new JToggleButton(getLanguage(3201, "Add"), upicon);
@@ -1040,7 +1068,7 @@ public class mproveInputPanel extends JToolBar implements ActionListener {
     class selectLabel extends JLabel implements MouseListener, MouseMotionListener {
 
         public selectLabel() {
-            //  this.setIcon(GExpert.createImageIcon("images/dtree/up.gif"));
+            //  this.setIcon(ResourceUtil.createImageIcon("images/dtree/up.gif"));
             this.setHorizontalTextPosition(JLabel.LEFT);
             this.addMouseListener(this);
             this.addMouseMotionListener(this);
@@ -1143,9 +1171,9 @@ public class mproveInputPanel extends JToolBar implements ActionListener {
                 JMenuItem item = null;
 
                 if (s.equalsIgnoreCase("Eqangle")) {
-                    item = new popSelectMenuItem("", GExpert.createImageIcon("images/symbol/sym_eqangle.gif"), 3, i);
+                    item = new popSelectMenuItem("", ResourceUtil.createImageIcon("images/symbol/sym_eqangle.gif"), 3, i);
                 } else if (s.equalsIgnoreCase("Congruent")) {
-                    item = new popSelectMenuItem("", GExpert.createImageIcon("images/symbol/sym_congruent.gif"), 3, i);
+                    item = new popSelectMenuItem("", ResourceUtil.createImageIcon("images/symbol/sym_congruent.gif"), 3, i);
                 } else
                     item = new popSelectMenuItem(s, 3, i);
                 menu1.add(item);

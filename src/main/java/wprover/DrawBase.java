@@ -6,6 +6,7 @@ import maths.CharSet;
 import maths.TMono;
 import maths.TPoly;
 import maths.param;
+import preference.CMisc;
 
 import javax.swing.*;
 import java.awt.*;

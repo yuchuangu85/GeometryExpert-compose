@@ -1,15 +1,29 @@
 package wprover;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.text.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.border.Border;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.text.StyledDocument;
+
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -99,7 +113,7 @@ public class TextValueEditor extends JBaseDialog implements ActionListener, KeyL
         JPanel p4 = new JPanel();
         p4.setLayout(new BoxLayout(p4, BoxLayout.Y_AXIS));
 
-        ImageIcon im = GExpert.createImageIcon("images/ptree/downsel.gif");
+        ImageIcon im = ResourceUtil.createImageIcon("images/ptree/downsel.gif");
         JButton bdata = new JButton("Data", im);
 //        bdata.setFont(bf);
         JButton bfunc = new JButton("Function", im);

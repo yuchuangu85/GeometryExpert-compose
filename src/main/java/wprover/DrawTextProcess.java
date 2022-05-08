@@ -2,6 +2,7 @@ package wprover;
 
 import gprover.*;
 import maths.param;
+import preference.CMisc;
 
 import javax.swing.*;
 import java.awt.*;

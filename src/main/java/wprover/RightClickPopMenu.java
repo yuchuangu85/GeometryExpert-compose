@@ -5,6 +5,8 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 
+import preference.CMisc;
+
 public class RightClickPopMenu extends JPopupMenu implements ActionListener {
 
     private GExpert gxInstance;
@@ -171,7 +173,7 @@ public class RightClickPopMenu extends JPopupMenu implements ActionListener {
 
     private void addFontSizeMenuItem(CText t) {
         int f = t.getFontSize();
-        int[] fz = CMisc.getFontSizePool();
+        int[] fz = CMisc.getsFontSizePool();
         int n = fz.length;
         Font fx = t.getFont();
 

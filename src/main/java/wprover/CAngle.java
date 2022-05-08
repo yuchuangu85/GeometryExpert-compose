@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.FileOutputStream;
 
 import gprover.Cm;
+import preference.CMisc;
 
 /**
  * Created by IntelliJ IDEA.

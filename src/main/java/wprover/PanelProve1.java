@@ -1,16 +1,95 @@
 package wprover;
 
-import gprover.*;
-import UI.*;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Vector;
-import java.io.*;
+
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
+
+import UI.EntityButtonUI;
+import UI.SolidBorder;
+import gprover.Full;
+import gprover.Prover;
+import gprover.Var;
+import gprover.a_cir;
+import gprover.angst;
+import gprover.auxpt;
+import gprover.c_segs;
+import gprover.cclass;
+import gprover.cond;
+import gprover.cons;
+import gprover.dterm;
+import gprover.el_term;
+import gprover.gdd_bc;
+import gprover.gib;
+import gprover.gr_term;
+import gprover.gterm;
+import gprover.l_line;
+import gprover.l_list;
+import gprover.p_line;
+import gprover.rule;
+import gprover.s_tris;
+import gprover.xterm;
+import preference.CMisc;
+import util.ResourceUtil;
 
 
 public class PanelProve1 extends JTabbedPane implements ChangeListener {
@@ -1405,7 +1484,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
         }
 
         this.setSelectedComponent(fullPanel);
-        cond c = Prover.getFullconc();
+        cond c = Prover.getFullConc();
         top_full.removeAllChildren();
         tree_full.cancelEditing();
         ((DefaultTreeModel) (tree_full.getModel())).reload();
@@ -2029,7 +2108,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
             setBorder(BorderFactory.createEmptyBorder(1, 0, 1, 0));
 
             b1 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/font.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/font.gif")) {
 
                 public void actionPerformed(ActionEvent e) {
                     b1.setSelected(false);
@@ -2051,7 +2130,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
             });
 
             button3 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/expand.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/expand.gif")) {
 
                 public void actionPerformed(ActionEvent e) {
                     button3.setSelected(false);
@@ -2060,27 +2139,27 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
             });
 
             button4 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/draw.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/draw.gif")) {
                 public void actionPerformed(ActionEvent e) {
                     startConstcutDiagram();
                 }
             });
             button5 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/addconc.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/addconc.gif")) {
                 public void actionPerformed(ActionEvent e) {
                     addConclution(null);
                     button5.setSelected(false);
                 }
             });
             button6 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/refresh.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/refresh.gif")) {
                 public void actionPerformed(ActionEvent e) {
                     showDatabase();
                     button6.setSelected(false);
                 }
             });
             button7 = new JToggleButton(new AbstractAction("",
-                    GExpert.createImageIcon("images/ptree/run.gif")) {
+                    ResourceUtil.createImageIcon("images/ptree/run.gif")) {
                 public void actionPerformed(ActionEvent e) {
                     prove();
                     button7.setSelected(false);
@@ -2198,7 +2277,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
                 pmenu.add(item);
 
             }
-            label = new JLabel("GDD", GExpert.createImageIcon("images/ptree/downsel.gif"), JLabel.HORIZONTAL) {
+            label = new JLabel("GDD", ResourceUtil.createImageIcon("images/ptree/downsel.gif"), JLabel.HORIZONTAL) {
                 public Dimension getPreferredSize() {
                     Dimension dm = super.getPreferredSize();
                     if (dm.getWidth() < 35) {
@@ -2440,7 +2519,7 @@ public class PanelProve1 extends JTabbedPane implements ChangeListener {
             };
             tiptext.setEditable(false);
             tiptext.setFont(CMisc.thmFont);
-            JToggleButton button = new JToggleButton(GExpert.createImageIcon("images/quit.gif"));
+            JToggleButton button = new JToggleButton(ResourceUtil.createImageIcon("images/quit.gif"));
             button.setBorder(null);
             button.setActionCommand("Close");
             button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

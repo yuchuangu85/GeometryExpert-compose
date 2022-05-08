@@ -8,7 +8,8 @@ import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.acl.Owner;
+
+import preference.CMisc;
 
 /**
  * Created by IntelliJ IDEA.

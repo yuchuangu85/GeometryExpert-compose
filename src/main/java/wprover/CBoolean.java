@@ -6,22 +6,19 @@ package wprover;
  * Date: 2005-9-20
  * Time: 11:16:25
  * To change this template use File | Settings | File Templates.
- */                 
-public class CBoolean
-{
+ */
+public class CBoolean {
     public boolean bl = false;
 
-    public CBoolean(boolean b)
-    {
+    public CBoolean(boolean b) {
         bl = b;
     }
 
-    public boolean getValue()
-    {
+    public boolean getValue() {
         return bl;
     }
-    public void setValue(boolean v)
-    {
+
+    public void setValue(boolean v) {
         bl = v;
     }
 }

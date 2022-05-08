@@ -1,14 +1,26 @@
 package wprover;
 
 
-import UI.DropShadowBorder;
-
-import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
+import UI.DropShadowBorder;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,17 +36,17 @@ public class AboutDialog extends JPopupMenu implements MouseListener {
     GExpert gx;
     wuTextPane pane;
 
-
     public AboutDialog(GExpert f) {
         gx = f;
 
-        this.setBorder(BorderFactory.createCompoundBorder(new DropShadowBorder(), BorderFactory.createLineBorder(color, 4)));
+        this.setBorder(BorderFactory.createCompoundBorder(new DropShadowBorder(),
+                BorderFactory.createLineBorder(color, 4)));
         JPanel panel = new JPanel();
         panel.setBackground(color);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.addMouseListener(this);
 
-        JLabel label = new JLabel(GExpert.createImageIcon("images/about/headline.jpg"));
+        JLabel label = new JLabel(ResourceUtil.createImageIcon("images/about/headline.jpg"));
         label.addMouseListener(this);
         label.setBackground(color);
         label.setForeground(color);

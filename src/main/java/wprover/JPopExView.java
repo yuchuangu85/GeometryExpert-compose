@@ -2,6 +2,7 @@ package wprover;
 
 import java.io.IOException;
 
+import preference.CMisc;
 import util.DirsUtil;
 
 /**

@@ -36,6 +36,7 @@ import maths.PolyBasic;
 import maths.TMono;
 import maths.TPoly;
 import maths.param;
+import preference.CMisc;
 import util.ResourceUtil;
 
 

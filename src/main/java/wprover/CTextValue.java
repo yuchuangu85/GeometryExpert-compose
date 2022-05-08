@@ -1,6 +1,7 @@
 package wprover;
 
 import maths.TMono;
+import preference.CMisc;
 
 /**
  * Created by IntelliJ IDEA.

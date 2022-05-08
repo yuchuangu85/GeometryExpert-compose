@@ -39,6 +39,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import preference.CMisc;
 import util.DirsUtil;
 
 

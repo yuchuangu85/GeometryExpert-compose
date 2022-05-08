@@ -99,6 +99,8 @@ import UI.GifEncoder;
 import gprover.gib;
 import gprover.gterm;
 import pdf.PDFJob;
+import preference.CMisc;
+import preference.Preference;
 import util.DirsUtil;
 import util.ResourceUtil;
 
@@ -159,12 +161,12 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
 
     public void init() {
 
-        this.setIconImage(GExpert.createImageIcon("images/gexicon.gif").getImage());    //GAPPLET
+        this.setIconImage(ResourceUtil.createImageIcon("images/gexicon.gif").getImage());    //GAPPLET
 //        setLocal();
 //        showWelcome();
         CMisc.initFont();
         loadRules();
-        loadPreference();
+        Preference.loadPreference();
         loadLanguage();
         initAttribute();
         setLookAndFeel();
@@ -254,7 +256,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         language = new Language();
         File f = new File(ResourceUtil.loadURLFromResource("language/" + CMisc.lan + ".lan").getPath());
         language.load(f);
-        Language.setLanugage(language);
+        Language.setLanguage(language);
     }
 
     public void initAttribute() {
@@ -574,7 +576,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
                 return dm;
             }
         };
-        Font f = CMisc.button_label_font;
+        Font f = CMisc.buttonLabelFont;
         label2.setFont(f);
         label.setFont(f);
 
@@ -590,8 +592,8 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         tipanel = panel;
 
 
-        show_button = new TStateButton(GExpert.createImageIcon("images/ticon/show.gif"),
-                GExpert.createImageIcon("images/ticon/hide.gif"));
+        show_button = new TStateButton(ResourceUtil.createImageIcon("images/ticon/show.gif"),
+                ResourceUtil.createImageIcon("images/ticon/hide.gif"));
 
         show_button.addActionListener(new ActionListener() {
 
@@ -622,7 +624,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
                 if (contents[i].isDirectory()) {
                     continue;
                 }
-                iconPool.add(GExpert.createImageIcon(contents[i].getPath()));
+                iconPool.add(ResourceUtil.createImageIcon(contents[i].getPath()));
             }
 
             for (int i = 0; i < contents.length; i++) {
@@ -843,7 +845,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
 //        addAMenu(menu,"Translate","Translate View",this);
 //        addAMenu(menu,"Zoom-in","Zoom in",this);
 //        addAMenu(menu,"Zoom-out","Zoom out",this);
-//        
+//
 
 
         menu = new JMenu(getLanguage("Construct"));
@@ -1040,24 +1042,31 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         getContentPane().add(toolBarRight, BorderLayout.EAST);
     }
 
-    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar, String name,
-                                                       String tooltip, ActionListener listener, String command) {
+    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar,
+                                                       String name,
+                                                       String tooltip,
+                                                       ActionListener listener,
+                                                       String command) {
         JRadioButtonMenuItem item = addRadioButtonMenuItem(bar, name, tooltip, listener);
         item.setActionCommand(command);
         return item;
     }
 
-    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar, String name, String text,
-                                                       String tooltip, ActionListener listener) {
+    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar,
+                                                       String name,
+                                                       String text,
+                                                       String tooltip,
+                                                       ActionListener listener) {
         JRadioButtonMenuItem item = addRadioButtonMenuItem(bar, name, tooltip, listener);
         item.setText(getLanguage(text));
         return item;
     }
 
-    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar, String name,
-                                                       String tooltip, ActionListener listener) {
-        JRadioButtonMenuItem miten;
-        miten = new JRadioButtonMenuItem(name);
+    public JRadioButtonMenuItem addRadioButtonMenuItem(JMenu bar,
+                                                       String name,
+                                                       String tooltip,
+                                                       ActionListener listener) {
+        JRadioButtonMenuItem miten = new JRadioButtonMenuItem(name);
 
         miten.setActionCommand(name);
         miten.setText(getLanguage(name));
@@ -1076,8 +1085,11 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         return miten;
     }
 
-    public JMenuItem addAMenu(JMenu bar, String name, String tooltip,
-                              ActionListener listener, String command) {
+    public JMenuItem addAMenu(JMenu bar,
+                              String name,
+                              String tooltip,
+                              ActionListener listener,
+                              String command) {
         JMenuItem item = addAMenu(bar, name, tooltip, listener);
         item.setActionCommand(command);
         return item;
@@ -1098,19 +1110,19 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
     }
 
     public void addImageToItem(JMenuItem item) {
-        ImageIcon m = GExpert.createImageIcon("images/small/" + "blank.gif");
+        ImageIcon m = ResourceUtil.createImageIcon("images/small/" + "blank.gif");
         item.setIcon(m);
     }
 
     public void addImageToItem(JMenu item) {
-        ImageIcon m = GExpert.createImageIcon("images/small/" + "blank.gif");
+        ImageIcon m = ResourceUtil.createImageIcon("images/small/" + "blank.gif");
         item.setIcon(m);
     }
 
     public void addImageToItem(JMenuItem item, String name) {
-        ImageIcon m = GExpert.createImageIcon("images/small/" + name + ".gif");
+        ImageIcon m = ResourceUtil.createImageIcon("images/small/" + name + ".gif");
         if (m == null)
-            m = GExpert.createImageIcon("images/small/" + "blank.gif");
+            m = ResourceUtil.createImageIcon("images/small/" + "blank.gif");
         item.setIcon(m);
     }
 
@@ -1119,7 +1131,7 @@ public class GExpert extends JFrame implements ActionListener, KeyListener, Drop
         item.setMnemonic(ne);
         KeyStroke ctrlP = KeyStroke.getKeyStroke(ne, InputEvent.CTRL_MASK);
         item.setAccelerator(ctrlP);
-        ImageIcon m = GExpert.createImageIcon("images/small/" + image + ".gif");
+        ImageIcon m = ResourceUtil.createImageIcon("images/small/" + image + ".gif");
         item.setIcon(m);
         return item;
     }

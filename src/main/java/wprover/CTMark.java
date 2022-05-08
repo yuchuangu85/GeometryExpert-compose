@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
 
+import preference.CMisc;
+
 public class CTMark extends CClass {
 
     CLine ln1, ln2;

@@ -1,8 +1,5 @@
 package wprover;
 
-import wprover.CPoint;
-import wprover.CMisc;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

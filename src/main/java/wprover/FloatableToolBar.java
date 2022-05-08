@@ -1,10 +1,23 @@
 package wprover;
 
-import UI.EntityButtonUI;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JToggleButton;
+
+import UI.EntityButtonUI;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -38,7 +51,7 @@ public class FloatableToolBar extends JPopupMenu {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 
-        JToggleButton button = new JToggleButton(GExpert.createImageIcon("images/quit.gif")) {
+        JToggleButton button = new JToggleButton(ResourceUtil.createImageIcon("images/quit.gif")) {
             public Dimension getPreferredSize() {
                 return super.getMinimumSize();
             }

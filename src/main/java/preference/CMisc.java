@@ -1,4 +1,4 @@
-package wprover;
+package preference;
 
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
@@ -79,19 +79,19 @@ public class CMisc {
     final public static BasicStroke NormalLineStroke = new BasicStroke(1.0f);
     final public static BasicStroke SelectObjectStroke = new BasicStroke(5.0f);
     final public static BasicStroke SelectPolygonStroke = new BasicStroke(3.0f);
-    final public static float[] DefautlDash = {2.0f};
-    final public static BasicStroke DashedStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, DefautlDash, 0.0f);
-    final public static float[] DefautlDash1 = {3.0f};
-    final public static BasicStroke DashedStroke1 = new BasicStroke(1.6f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 7.0f, DefautlDash1, 0.0f);
+    final public static float[] sDefaultDash = {2.0f};
+    final public static BasicStroke DashedStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, sDefaultDash, 0.0f);
+    final public static float[] sDefaultDash1 = {3.0f};
+    final public static BasicStroke DashedStroke1 = new BasicStroke(1.6f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 7.0f, sDefaultDash1, 0.0f);
 
     //////////////////font.////////////////////////////////////////////////
     ////////////////////////////////////////////////
     //** begin of Font.
 
     public static String defaultFont = "Dialog";
-    public static Font angleNameFont, nameFont, font, smallnameFont, button_label_font;
+    public static Font angleNameFont, nameFont, font, smallNameFont, buttonLabelFont;
     public static Font thmFont, fullFont, gddFont, areaFont, manualFont, fixFont, algebraFont;
-    private static int[] FontSizePool = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 36, 40, 48, 64, 72};
+    private static final int[] sFontSizePool = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 36, 40, 48, 64, 72};
 
     public static void setDefaultFont(String str) {
         if (defaultFont.equalsIgnoreCase(str))
@@ -103,8 +103,8 @@ public class CMisc {
         angleNameFont = new Font(defaultFont, Font.PLAIN, 12);
         nameFont = new Font(defaultFont, Font.BOLD, 16);
         font = new Font(defaultFont, Font.PLAIN, 12);
-        smallnameFont = new Font(defaultFont, Font.BOLD, 10);
-        button_label_font = new Font(defaultFont, Font.BOLD, 12);
+        smallNameFont = new Font(defaultFont, Font.BOLD, 10);
+        buttonLabelFont = new Font(defaultFont, Font.BOLD, 12);
         thmFont = new Font(defaultFont, Font.BOLD, 12);
         fullFont = new Font(defaultFont, Font.BOLD, 13);
         gddFont = new Font(defaultFont, Font.BOLD, 13);
@@ -122,8 +122,8 @@ public class CMisc {
     public static boolean AntiAlias = true;
 
 
-    public static int[] getFontSizePool() {
-        return FontSizePool;
+    public static int[] getsFontSizePool() {
+        return sFontSizePool;
     }
 
     //////////////////////////color/////////////////////////////////////////////////
@@ -278,8 +278,8 @@ public class CMisc {
         angleNameFont = new Font(defaultFont, Font.PLAIN, 12);
         nameFont = new Font(defaultFont, Font.BOLD, 16);
         font = new Font(defaultFont, Font.PLAIN, 12);
-        smallnameFont = new Font(defaultFont, Font.BOLD, 10);
-        button_label_font = new Font(defaultFont, Font.BOLD, 14);
+        smallNameFont = new Font(defaultFont, Font.BOLD, 10);
+        buttonLabelFont = new Font(defaultFont, Font.BOLD, 14);
     }
 
 
@@ -333,8 +333,8 @@ public class CMisc {
         writeFont(out, "angleNameFont", angleNameFont);
         writeFont(out, "nameFont", nameFont);
         writeFont(out, "font", font);
-        writeFont(out, "smallnameFont", smallnameFont);
-        writeFont(out, "button_label_font", button_label_font);
+        writeFont(out, "smallnameFont", smallNameFont);
+        writeFont(out, "button_label_font", buttonLabelFont);
         writeFont(out, "thmFont", thmFont);
         writeFont(out, "gddFont", gddFont);
         writeFont(out, "fullFont", fullFont);
@@ -406,9 +406,9 @@ public class CMisc {
                 } else if (m1.equalsIgnoreCase("font")) {
                     font = getFont(m2);
                 } else if (m1.equalsIgnoreCase("smallnameFont")) {
-                    smallnameFont = getFont(m2);
+                    smallNameFont = getFont(m2);
                 } else if (m1.equalsIgnoreCase("button_label_font")) {
-                    button_label_font = getFont(m2);
+                    buttonLabelFont = getFont(m2);
                 } else if (m1.equalsIgnoreCase("thmFont")) {
                     thmFont = getFont(m2);
                 } else if (m1.equalsIgnoreCase("gddFont")) {

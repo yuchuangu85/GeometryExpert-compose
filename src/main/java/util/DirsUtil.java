@@ -8,9 +8,9 @@ package util;
 public final class DirsUtil {
 
     public static String getDir() {
-        String user_directory = getUserDir();
+        String userDirectory = getUserDir();
         String sp = getFileSeparator();
-        return user_directory + sp;
+        return userDirectory + sp;
     }
 
     public static String getUserDir() {

@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import UI.EntityButtonUI;
 import gprover.gib;
+import preference.CMisc;
 import util.ResourceUtil;
 
 
@@ -22,11 +23,9 @@ public class GApplet1 extends JApplet {
     private int PWIDTH = 300;
 //    private boolean freezept = false;
 
-
     public DPanel d;
     public DrawTextProcess dp;
     public PanelProve1 pproof;
-
 
     public void init() {
 
@@ -38,15 +37,12 @@ public class GApplet1 extends JApplet {
             gib.initRulers();
             CMisc.homedir = this.getDocumentBase();
 
-
             d = new DPanel(null);
             dp = new DrawTextProcess();
             d.dp = dp;
 
-
             this.setSize(this.getAppletWidth(), this.getAppletHeight());
             d.setBackground(this.getAppletBackGround());
-
 
             getPPWidth();
             addProof();
@@ -308,7 +304,7 @@ public class GApplet1 extends JApplet {
         public BReset() {
             this.setFloatable(false);
             this.setBorder(null);
-            JButton b = new JButton(GExpert.createImageIcon("images/other/reset.gif"));
+            JButton b = new JButton(ResourceUtil.createImageIcon("images/other/reset.gif"));
             b.setToolTipText("Reset");
             b.setUI(new EntityButtonUI());
             b.addActionListener(this);

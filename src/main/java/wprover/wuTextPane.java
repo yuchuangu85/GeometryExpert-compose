@@ -1,15 +1,23 @@
 package wprover;
 
-import maths.TMono;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import preference.CMisc;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -77,25 +85,25 @@ public class wuTextPane extends JTextPane implements ActionListener {
 
         s = doc.addStyle("icon1", regular);
         StyleConstants.setAlignment(s, StyleConstants.ALIGN_CENTER);
-        ImageIcon pigIcon = GExpert.createImageIcon("images/dtree/right.gif");
+        ImageIcon pigIcon = ResourceUtil.createImageIcon("images/dtree/right.gif");
         if (pigIcon != null) {
             StyleConstants.setIcon(s, pigIcon);
         }
         s = doc.addStyle("icon2", regular);
         StyleConstants.setAlignment(s, StyleConstants.ALIGN_CENTER);
-        pigIcon = GExpert.createImageIcon("images/dtree/wrong.gif");
+        pigIcon = ResourceUtil.createImageIcon("images/dtree/wrong.gif");
         if (pigIcon != null) {
             StyleConstants.setIcon(s, pigIcon);
         }
         s = doc.addStyle("icon3", regular);
         StyleConstants.setAlignment(s, StyleConstants.ALIGN_CENTER);
-        pigIcon = GExpert.createImageIcon("images/dtree/question.gif");
+        pigIcon = ResourceUtil.createImageIcon("images/dtree/question.gif");
         if (pigIcon != null) {
             StyleConstants.setIcon(s, pigIcon);
         }
         s = doc.addStyle("icon4", regular);
         StyleConstants.setAlignment(s, StyleConstants.ALIGN_CENTER);
-        pigIcon = GExpert.createImageIcon("images/dtree/warn.gif");
+        pigIcon = ResourceUtil.createImageIcon("images/dtree/warn.gif");
         if (pigIcon != null) {
             StyleConstants.setIcon(s, pigIcon);
         }

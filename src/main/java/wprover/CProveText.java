@@ -19,6 +19,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import gprover.cond;
+import preference.CMisc;
 import util.ResourceUtil;
 
 /**

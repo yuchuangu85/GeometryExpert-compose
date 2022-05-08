@@ -7,19 +7,20 @@ package wprover;
  * Time: 15:30:31
  * To change this template use File | Settings | File Templates.
  */
-public class Grule {
+public class GddRule {
+
     public int type;
     public int rx;  // 0. GDD,  1. FULL
     public String name;
     public String head;
-    public String discription;
-    public String exstring;
+    public String description;
+    public String exString;
 
-    public Grule(int t, String t1, String t2, String t3, int tx) {
+    public GddRule(int t, String t1, String t2, String t3, int tx) {
         type = t;
         head = t1;
-        discription = t2;
-        exstring = t3;
+        description = t2;
+        exString = t3;
         if (t1.contains("#")) {
             String[] s = t1.split("#");
             name = s[1];

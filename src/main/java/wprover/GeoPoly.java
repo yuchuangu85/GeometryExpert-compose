@@ -5,6 +5,7 @@ import maths.TMono;
 import maths.TPoly;
 import gprover.gib;
 import gprover.cndg;
+import preference.CMisc;
 
 import java.util.Vector;
 

@@ -7,6 +7,8 @@ import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.awt.*;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ${Yezheng}

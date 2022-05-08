@@ -1,14 +1,39 @@
 package wprover;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Vector;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.DataInputStream;
-import java.io.IOException;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.Vector;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTree;
+import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
+
+import preference.CMisc;
+import util.ResourceUtil;
 
 
 public class MProveTree extends JTree implements ActionListener {
@@ -995,20 +1020,20 @@ class mnode extends Vector {
 
 
 class msymbol extends mobject {
-    final static ImageIcon EQQ = GExpert.createImageIcon("images/symbol/eqq.gif");
-    final static ImageIcon EQ = GExpert.createImageIcon("images/symbol/eq.gif");
-    final static ImageIcon EXISTS = GExpert.createImageIcon("images/symbol/exist.gif");
-    final static ImageIcon FOREVERY = GExpert.createImageIcon("images/symbol/for_every.gif");
-    final static ImageIcon INFINITY = GExpert.createImageIcon("images/symbol/infinity.gif");
-    final static ImageIcon NEQEVER = GExpert.createImageIcon("images/symbol/neqever.gif");
-    final static ImageIcon NOTEQ = GExpert.createImageIcon("images/symbol/noteq.gif");
-    final static ImageIcon SIM = GExpert.createImageIcon("images/symbol/sim.gif");
-    final static ImageIcon EQSIM = GExpert.createImageIcon("images/symbol/eq_sim.gif");
-    final static ImageIcon LESS = GExpert.createImageIcon("images/symbol/less.gif");
-    final static ImageIcon TRI = GExpert.createImageIcon("images/symbol/triangle.gif");
-    final static ImageIcon ANGLE = GExpert.createImageIcon("images/symbol/angle.gif");
-    final static ImageIcon PARA = GExpert.createImageIcon("images/symbol/para.gif");
-    final static ImageIcon PERP = GExpert.createImageIcon("images/symbol/perp.gif");
+    final static ImageIcon EQQ = ResourceUtil.createImageIcon("images/symbol/eqq.gif");
+    final static ImageIcon EQ = ResourceUtil.createImageIcon("images/symbol/eq.gif");
+    final static ImageIcon EXISTS = ResourceUtil.createImageIcon("images/symbol/exist.gif");
+    final static ImageIcon FOREVERY = ResourceUtil.createImageIcon("images/symbol/for_every.gif");
+    final static ImageIcon INFINITY = ResourceUtil.createImageIcon("images/symbol/infinity.gif");
+    final static ImageIcon NEQEVER = ResourceUtil.createImageIcon("images/symbol/neqever.gif");
+    final static ImageIcon NOTEQ = ResourceUtil.createImageIcon("images/symbol/noteq.gif");
+    final static ImageIcon SIM = ResourceUtil.createImageIcon("images/symbol/sim.gif");
+    final static ImageIcon EQSIM = ResourceUtil.createImageIcon("images/symbol/eq_sim.gif");
+    final static ImageIcon LESS = ResourceUtil.createImageIcon("images/symbol/less.gif");
+    final static ImageIcon TRI = ResourceUtil.createImageIcon("images/symbol/triangle.gif");
+    final static ImageIcon ANGLE = ResourceUtil.createImageIcon("images/symbol/angle.gif");
+    final static ImageIcon PARA = ResourceUtil.createImageIcon("images/symbol/para.gif");
+    final static ImageIcon PERP = ResourceUtil.createImageIcon("images/symbol/perp.gif");
 
     public static String[] cSprefix = {"because", "hence"};
     static Vector vlist;
@@ -1017,7 +1042,7 @@ class msymbol extends mobject {
     public static void createAllIcons() {
         vlist = new Vector();
         for (int i = 0; i < cSprefix.length; i++) {
-            ImageIcon icon = GExpert.createImageIcon("images/dtree/" +
+            ImageIcon icon = ResourceUtil.createImageIcon("images/dtree/" +
                     cSprefix[i] + ".gif");
             if (icon == null) {
                 CMisc.print("Can not find image : " + cSprefix[i]);
@@ -1260,7 +1285,7 @@ class mdrobj extends mobject {
 
     static void createAllIcons() {
         for (int i = 0; i < pStrings.length; i++) {
-            ImageIcon icon = GExpert.createImageIcon("images/dtree/" + pStrings[i] + ".gif");
+            ImageIcon icon = ResourceUtil.createImageIcon("images/dtree/" + pStrings[i] + ".gif");
             if (icon != null) {
                 vlist.add(icon);
             } else {

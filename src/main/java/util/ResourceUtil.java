@@ -2,6 +2,8 @@ package util;
 
 import java.net.URL;
 
+import javax.swing.ImageIcon;
+
 import wprover.GExpert;
 
 /**
@@ -15,5 +17,12 @@ public final class ResourceUtil {
       return GExpert.class.getClassLoader().getResource(imgLocation);
    }
 
+   public static ImageIcon createImageIcon(String path) {
+      URL imgURL = loadURLFromResource(path);
+      if (imgURL == null) {
+         return null;
+      }
+      return new ImageIcon(imgURL);
+   }
 
 }

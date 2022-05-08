@@ -1,8 +1,9 @@
 package wprover;
 
-import javax.swing.*;
+import java.awt.Dimension;
 import java.util.Vector;
-import java.awt.*;
+
+import javax.swing.JComboBox;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,14 +12,14 @@ import java.awt.*;
  * Time: 14:25:06
  * To change this template use File | Settings | File Templates.
  */
-public class CCoBox extends JComboBox {
-    private static Vector instanceList = new Vector();
-    int defaultindex = 0;
+public class CCoBox extends JComboBox<Integer> {
+    private static final Vector<CCoBox> instanceList = new Vector<>();
+    int defaultIndex = 0;
 
     public static CCoBox CreateAInstance() {
         Integer[] intArray = new Integer[DrawData.getColorCounter() + 1];
         for (int i = 0; i <= DrawData.getColorCounter(); i++) {
-            intArray[i] = new Integer(i);
+            intArray[i] = i;
         }
         CCoBox cb = new CCoBox(intArray);
 
@@ -31,7 +32,7 @@ public class CCoBox extends JComboBox {
         return cb;
     }
 
-    private CCoBox(final Object items[]) {
+    private CCoBox(final Integer[] items) {
         super(items);
     }
 
@@ -41,18 +42,17 @@ public class CCoBox extends JComboBox {
     }
 
     public void setDefaultIndex(int index) {
-        defaultindex = index;
+        defaultIndex = index;
     }
 
     public static void reGenerateAll() {
-        for (int i = 0; i < instanceList.size(); i++) {
-            CCoBox cb = (CCoBox) instanceList.get(i);
+        for (CCoBox cCoBox : instanceList) {
             int co = DrawData.getColorCounter();
-            int n = cb.getItemCount();
+            int n = cCoBox.getItemCount();
 
             if (co >= n)
                 for (int j = n; j <= co; j++) {
-                    cb.addItem(new Integer(j));
+                    cCoBox.addItem(j);
                 }
         }
     }
@@ -60,11 +60,10 @@ public class CCoBox extends JComboBox {
     public static void resetAll() {
         DrawData.reset();
 
-        for (int i = 0; i < instanceList.size(); i++) {
-            CCoBox cb = (CCoBox) instanceList.get(i);
-            cb.setSelectedIndex(cb.defaultindex);
+        for (CCoBox cb : instanceList) {
+            cb.setSelectedIndex(cb.defaultIndex);
             int num = DrawData.getColorCounter();
-            for(int j=num+1; j<cb.getItemCount(); j++)
+            for (int j = num + 1; j < cb.getItemCount(); j++)
                 cb.removeItemAt(j);
         }
     }

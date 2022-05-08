@@ -1,6 +1,7 @@
 package wprover;
 
 import maths.TPoly;
+import preference.CMisc;
 
 import java.util.Vector;
 import java.io.DataOutputStream;

@@ -19,6 +19,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import UI.BLeveledButtonUIX;
+import preference.CMisc;
 import util.ResourceUtil;
 
 /**

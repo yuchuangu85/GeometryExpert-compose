@@ -3,30 +3,30 @@ package maths;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 public class BigFraction implements Cloneable, Comparable, Serializable {
-    protected final BigInteger numerator_;
-    protected final BigInteger denominator_;
+    protected final BigInteger numerator;
+    protected final BigInteger denominator;
 
     final public static BigFraction ZERO = new BigFraction("0/1");
     final public static BigFraction ONE = new BigFraction("1/1");
 
-
     public long intNumerator() {
-        return numerator_.intValue();
+        return numerator.intValue();
     }
 
     public long intDenominator() {
-        return denominator_.intValue();
+        return denominator.intValue();
     }
 
     public BigInteger numerator() {
-        return numerator_;
+        return numerator;
     }
 
     public BigInteger denominator() {
-        return denominator_;
+        return denominator;
     }
 
     public BigFraction(BigInteger num, BigInteger den) {
@@ -37,13 +37,12 @@ public class BigFraction implements Cloneable, Comparable, Serializable {
         BigInteger b = denNonnegative ? den : den.negate();
         BigInteger g = a.gcd(b);
         if (numNonnegative == denNonnegative) {
-            numerator_ = a.divide(g);
+            numerator = a.divide(g);
         } else {
-            numerator_ = a.negate().divide(g);
+            numerator = a.negate().divide(g);
         }
-        denominator_ = b.divide(g);
+        denominator = b.divide(g);
     }
-
 
     public BigFraction(long n) {
         this(BigInteger.valueOf(n), BigInteger.valueOf(1));
@@ -54,8 +53,8 @@ public class BigFraction implements Cloneable, Comparable, Serializable {
     }
 
     public BigFraction(BigFraction f) {
-        numerator_ = f.numerator();
-        denominator_ = f.denominator();
+        numerator = f.numerator();
+        denominator = f.denominator();
     }
 
     public BigFraction(String s) {
@@ -68,13 +67,8 @@ public class BigFraction implements Cloneable, Comparable, Serializable {
                 new BigInteger(Long.toString(den)));
     }
 
-    //------------------
-    // Override toString
-    //------------------
-
     public String toString() {
         BigInteger b2 = denominator();
-
         if (b2.compareTo(BigInteger.ONE) != 0)
             return numerator().toString() + "/" + denominator().toString();
         else
@@ -102,7 +96,7 @@ public class BigFraction implements Cloneable, Comparable, Serializable {
     }
 
     private boolean gteq(BigInteger y) {
-        return numerator_.compareTo(y) >= 0;
+        return numerator.compareTo(y) >= 0;
     }
 
     private boolean lt(BigInteger x, BigInteger y) {
@@ -142,7 +136,7 @@ public class BigFraction implements Cloneable, Comparable, Serializable {
     // Rounding mode is any of BigDecimal.ROUND_xxx constants
     //-------------------------------------------------------
 
-    public BigDecimal asBigDecimal(int scale, int roundingMode) {
+    public BigDecimal asBigDecimal(int scale, RoundingMode roundingMode) {
         BigDecimal num = new BigDecimal(numerator());
         BigDecimal den = new BigDecimal(denominator());
         return num.divide(den, scale, roundingMode);

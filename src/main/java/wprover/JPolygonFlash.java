@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import java.util.Vector;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ye

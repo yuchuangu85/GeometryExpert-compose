@@ -1,15 +1,26 @@
 package wprover;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import gprover.Cm;
+import preference.CMisc;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,9 +31,9 @@ import gprover.Cm;
  */
 public class ConcPanel extends JPanel implements ActionListener, ItemListener {
 
-    public static ImageIcon icon_Right = GExpert.createImageIcon("images/dtree/right.gif");
-    public static ImageIcon icon_Wrong = GExpert.createImageIcon("images/dtree/wrong.gif");
-    public static ImageIcon icon_Question = GExpert.createImageIcon("images/dtree/question.gif");
+    public static ImageIcon icon_Right = ResourceUtil.createImageIcon("images/dtree/right.gif");
+    public static ImageIcon icon_Wrong = ResourceUtil.createImageIcon("images/dtree/wrong.gif");
+    public static ImageIcon icon_Question = ResourceUtil.createImageIcon("images/dtree/question.gif");
 
     private JComboBox bt;
     private Vector vlist = new Vector();

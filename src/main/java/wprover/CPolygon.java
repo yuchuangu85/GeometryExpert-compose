@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.DataInputStream;
 import java.io.FileOutputStream;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator

@@ -1,17 +1,34 @@
 package wprover;
 
-import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Vector;
+
+import javax.swing.AbstractCellEditor;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
-import javax.swing.tree.TreeCellRenderer;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeCellEditor;
-import java.awt.*;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.Vector;
+import javax.swing.tree.TreeCellRenderer;
+
+import preference.CMisc;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,10 +39,10 @@ import java.util.Vector;
  */
 
 public class TreeCellOpaqueRender extends JPanel implements TreeCellRenderer, MouseListener {
-    static Icon Icon_etri = GExpert.createImageIcon("images/dtree/etri.gif");
-    static Icon Icon_squa = GExpert.createImageIcon("images/dtree/squa.gif");
-    static Icon Icon_perp = GExpert.createImageIcon("images/dtree/perp.gif");
-    static Icon Icon_parallelogram = GExpert.createImageIcon("images/dtree/parallelogram.gif");
+    static Icon Icon_etri = ResourceUtil.createImageIcon("images/dtree/etri.gif");
+    static Icon Icon_squa = ResourceUtil.createImageIcon("images/dtree/squa.gif");
+    static Icon Icon_perp = ResourceUtil.createImageIcon("images/dtree/perp.gif");
+    static Icon Icon_parallelogram = ResourceUtil.createImageIcon("images/dtree/parallelogram.gif");
 
 
     private Vector vlist = new Vector();

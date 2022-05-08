@@ -45,6 +45,8 @@ import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: yezheng

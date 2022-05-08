@@ -11,9 +11,8 @@ import javax.swing.*;
  */
 public class GAppletParameterDialog extends JDialog {
 
-    public  GAppletParameterDialog(GExpert gx)
-    {
-        super(gx.getFrame(),"Applet Exporter");
-        
+    public GAppletParameterDialog(GExpert gx) {
+        super(gx.getFrame(), "Applet Exporter");
+
     }
 }

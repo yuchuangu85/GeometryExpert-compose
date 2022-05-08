@@ -1,14 +1,27 @@
 package wprover;
 
-import gprover.cclass;
-import gprover.Prover;
-
-import javax.swing.*;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import gprover.Prover;
+import gprover.cclass;
 
 
 public class FactFinderDialog extends JBaseDialog implements ActionListener, ItemListener {
@@ -23,7 +36,6 @@ public class FactFinderDialog extends JBaseDialog implements ActionListener, Ite
     private int find_type;
     private DefaultListModel model;
     private JList list;
-
 
     public FactFinderDialog(GExpert owner, int type, String title) {
         super(owner.getFrame(), title);

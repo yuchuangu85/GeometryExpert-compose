@@ -1,11 +1,27 @@
 package wprover;
 
-import gprover.Cm;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Vector;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import gprover.Cm;
+import util.ResourceUtil;
 
 public class NumCheckDialog extends JBaseDialog implements DiagramUpdater, ItemListener, WindowListener {
 
@@ -30,8 +46,8 @@ public class NumCheckDialog extends JBaseDialog implements DiagramUpdater, ItemL
         this.setTitle(GExpert.getLanguage("Numerical Check"));
         this.addWindowListener(this);
 
-        icon1 = GExpert.createImageIcon("images/ptree/hook.gif");
-        icon2 = GExpert.createImageIcon("images/ptree/cross.gif");
+        icon1 = ResourceUtil.createImageIcon("images/ptree/hook.gif");
+        icon2 = ResourceUtil.createImageIcon("images/ptree/cross.gif");
 
 
         JPanel top = new JPanel();

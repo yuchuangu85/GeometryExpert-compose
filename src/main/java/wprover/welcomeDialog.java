@@ -1,9 +1,21 @@
 package wprover;
 
-import javax.swing.*;
-import java.awt.event.MouseListener;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
-import java.awt.*;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,7 +42,7 @@ public class welcomeDialog extends JPanel implements MouseListener {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.addMouseListener(this);
 
-        JLabel label = new JLabel(GExpert.createImageIcon("images/about/headline.jpg"));
+        JLabel label = new JLabel(ResourceUtil.createImageIcon("images/about/headline.jpg"));
         label.addMouseListener(this);
         label.setBackground(color);
         label.setForeground(color);

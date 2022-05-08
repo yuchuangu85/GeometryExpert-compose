@@ -1,10 +1,12 @@
 package wprover;
 
 import javax.swing.*;
-import java.util.Vector;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import preference.CMisc;
 
 /**
  * Created by IntelliJ IDEA.

@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
+import preference.CMisc;
 import util.DirsUtil;
 
 public class RuleListDialog extends JBaseDialog {
@@ -85,11 +86,11 @@ public class RuleListDialog extends JBaseDialog {
     }
 
     public boolean loadRule(int t, int n) {
-        Grule r;
+        GddRule r;
         if (t == 0)
-            r = RuleList.getGrule(n);
+            r = RuleList.getGddRule(n);
         else
-            r = RuleList.getFrule(n);
+            r = RuleList.getFullRule(n);
         if (r == null)
             return false;
 
@@ -133,7 +134,7 @@ public class RuleListDialog extends JBaseDialog {
             this.add(epane);
         }
 
-        public void setRule(int t, Grule r) {
+        public void setRule(int t, GddRule r) {
             rt1 = t;
             rt2 = r.type;
 
@@ -144,9 +145,9 @@ public class RuleListDialog extends JBaseDialog {
             label1.setText(sh);
             label2.setText(r.name);
             label1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            String s = r.discription;
-            if (r.exstring != null)
-                s += '\n' + r.exstring;
+            String s = r.description;
+            if (r.exString != null)
+                s += '\n' + r.exString;
             epane.setText(s);
         }
 

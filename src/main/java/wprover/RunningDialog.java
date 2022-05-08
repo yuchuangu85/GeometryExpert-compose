@@ -1,12 +1,23 @@
 package wprover;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.Timer;
+
 import UI.DropShadowBorder;
 import UI.EntityButtonUI;
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.*;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -45,7 +56,7 @@ public class RunningDialog extends JPopupMenu implements ActionListener {
             }
         };
 
-        JButton b = new JButton(GExpert.createImageIcon("images/other/stop1.gif"));
+        JButton b = new JButton(ResourceUtil.createImageIcon("images/other/stop1.gif"));
         b.setUI(new EntityButtonUI());
         panel.add(b);
         b.setToolTipText("Stop the running.");

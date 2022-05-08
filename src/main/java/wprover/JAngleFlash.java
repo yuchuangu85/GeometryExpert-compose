@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: yezheng

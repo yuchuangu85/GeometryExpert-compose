@@ -1,6 +1,6 @@
 package maths;
 
-//import wprover.CMisc;
+//import preference.CMisc;
 
 public class CharSet {
     final private static boolean DEBUG = false;

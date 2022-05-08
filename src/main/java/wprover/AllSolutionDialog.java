@@ -1,15 +1,26 @@
 package wprover;
 
-import UI.EntityButtonUI;
-import gprover.cons;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Vector;    
+import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import UI.EntityButtonUI;
+import gprover.cons;
+import preference.CMisc;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -64,10 +75,10 @@ public class AllSolutionDialog extends JBaseDialog implements ActionListener, Wi
         p2.add(field2);
         panel.add(p2);
         EntityButtonUI ui = new EntityButtonUI();
-        JButton b = new JButton(GExpert.createImageIcon("images/ptree/show_pred.gif"));
-        JButton b1 = new JButton(GExpert.createImageIcon("images/ptree/addconc.gif"));
-        JButton b2 = new JButton(GExpert.createImageIcon("images/other/arrow_down.gif"));
-        JButton b3 = new JButton(GExpert.createImageIcon("images/other/step_forward.gif"));
+        JButton b = new JButton(ResourceUtil.createImageIcon("images/ptree/show_pred.gif"));
+        JButton b1 = new JButton(ResourceUtil.createImageIcon("images/ptree/addconc.gif"));
+        JButton b2 = new JButton(ResourceUtil.createImageIcon("images/other/arrow_down.gif"));
+        JButton b3 = new JButton(ResourceUtil.createImageIcon("images/other/step_forward.gif"));
         button = b;
         button1 = b1;
         button2 = b2;
@@ -105,8 +116,8 @@ public class AllSolutionDialog extends JBaseDialog implements ActionListener, Wi
 
         vblist = new Vector();
         vlist = new Vector();
-        cross = GExpert.createImageIcon("images/ptree/cross.gif");
-        hook = GExpert.createImageIcon("images/ptree/hook.gif");
+        cross = ResourceUtil.createImageIcon("images/ptree/cross.gif");
+        hook = ResourceUtil.createImageIcon("images/ptree/hook.gif");
 
         this.addWindowListener(this);
         this.pack();

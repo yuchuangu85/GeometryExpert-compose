@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import preference.CMisc;
+
 class DPanel extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener, ComponentListener {
 
     final public static int DRAW = 0;

@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ye

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.DataInputStream;
 import java.io.FileOutputStream;
 
+import preference.CMisc;
+
 public class CTrace extends CClass {
     private static final int MAX_POINT = 501;
 

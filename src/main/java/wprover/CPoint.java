@@ -1,6 +1,7 @@
 package wprover;
 
 import maths.param;
+import preference.CMisc;
 
 import java.util.Vector;
 import java.io.DataOutputStream;

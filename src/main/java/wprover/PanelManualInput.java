@@ -1,12 +1,30 @@
 package wprover;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
+import javax.swing.border.LineBorder;
+
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -110,7 +128,7 @@ public class PanelManualInput extends JPanel implements ActionListener {
         comb_ind.addItemListener(new ItemListener() {
 
             public void itemStateChanged(ItemEvent e) {
-              //  trender.setComponentAt(0, GExpert.createImageIcon("images/dtree/" + e.getItem().toString()));
+              //  trender.setComponentAt(0, ResourceUtil.createImageIcon("images/dtree/" + e.getItem().toString()));
                 trender.revalidate();
             }
         });
@@ -195,7 +213,7 @@ public class PanelManualInput extends JPanel implements ActionListener {
             }
 
             //Set the icon and text.  If icon was null, say so.
-            Icon icon = GExpert.createImageIcon("images/dtree/" + value);
+            Icon icon = ResourceUtil.createImageIcon("images/dtree/" + value);
             setIcon(icon);
             if (icon != null) {
             } else {

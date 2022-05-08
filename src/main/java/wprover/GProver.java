@@ -1,6 +1,7 @@
 package wprover;
 
 import gprover.Prover;
+import preference.CMisc;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

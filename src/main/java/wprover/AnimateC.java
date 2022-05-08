@@ -4,6 +4,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.DataInputStream;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator

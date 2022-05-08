@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Ye

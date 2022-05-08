@@ -8,14 +8,14 @@ public class Language {
 
     private static int MAX_LEN = 500;
 
-    private static Language laninstance = null;
+    private static Language lanInstance = null;
 
     private String stype;
     private Font font;
     private lnode[] ndlist = new lnode[MAX_LEN];
 
-    public static void setLanugage(Language lan) {
-        laninstance = lan;
+    public static void setLanguage(Language lan) {
+        lanInstance = lan;
     }
 
     public boolean isEnglish() {
@@ -31,15 +31,12 @@ public class Language {
         {
          //Locale.setDefault(Locale.P);   
         }
-
-        
     }
 
     public void load(File f) {
 
         try {
             //  OutputStreamWriter writer = this.outputBlank(f);
-
             InputStreamReader read = new InputStreamReader(new FileInputStream(f), "UTF-8");//
             BufferedReader reader = new BufferedReader(read);
             String h = reader.readLine();
@@ -230,27 +227,27 @@ public class Language {
 
 
     public static String getLs(String s) {
-        if (laninstance == null)
+        if (lanInstance == null)
             return s;
-        return laninstance.getString(s);
+        return lanInstance.getString(s);
     }
 
     public static String getLs(int m, String s) {
-        if (laninstance == null)
+        if (lanInstance == null)
             return s;
-        return laninstance.getString(m, s);
+        return lanInstance.getString(m, s);
     }
 
     public static String getLs(int n) {
-        if (laninstance == null)
+        if (lanInstance == null)
             return "";
-        return laninstance.getString(n);
+        return lanInstance.getString(n);
     }
 
     public static String getLs1(String s) {
-        if (laninstance == null)
+        if (lanInstance == null)
             return s;
-        return laninstance.getString1(s);
+        return lanInstance.getString1(s);
     }
 
 

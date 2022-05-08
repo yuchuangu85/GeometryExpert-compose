@@ -5,6 +5,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.Timer;
 
+import preference.CMisc;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Ye

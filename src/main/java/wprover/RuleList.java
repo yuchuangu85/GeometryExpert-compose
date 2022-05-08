@@ -23,39 +23,34 @@ import gprover.rulers;
  * To change this template use File | Settings | File Templates.
  */
 public class RuleList {
-    //  final private static boolean SAVEAGAIN = true;
 
     private RuleList() {
 
     }
 
-    final public static Vector GDDLIST = new Vector();
-    final public static Vector FULLLIST = new Vector();
+    final public static Vector<GddRule> sGddList = new Vector<>();
+    final public static Vector<GddRule> sFullList = new Vector<>();
 
-    public static Vector getAllGDDRules() {
-        Vector v = new Vector();
-        v.addAll(GDDLIST);
-        return v;
+    public static Vector<GddRule> getAllGDDRules() {
+        return new Vector<>(sGddList);
     }
 
-    public static Vector getAllFullRules() {
-        Vector v = new Vector();
-        v.addAll(FULLLIST);
-        return v;
+    public static Vector<GddRule> getAllFullRules() {
+        return new Vector<>(sFullList);
     }
 
-    public static Grule getGrule(int n) {
+    public static GddRule getGddRule(int n) {
         n--;
-        if (n < 0 || n > GDDLIST.size())
+        if (n < 0 || n > sGddList.size())
             return null;
-        return (Grule) GDDLIST.get(n);
+        return sGddList.get(n);
     }
 
-    public static Grule getFrule(int n) {
+    public static GddRule getFullRule(int n) {
         n--;
-        if (n < 0 || n > FULLLIST.size())
+        if (n < 0 || n > sFullList.size())
             return null;
-        return (Grule) FULLLIST.get(n);
+        return sFullList.get(n);
     }
 
     private static void loadRulersURL(URL base) {
@@ -71,18 +66,16 @@ public class RuleList {
     private static DataInputStream getStream(URL base, String file) {
         try {
             URL ul = new URL(base, file);
-            URLConnection urlc = ul.openConnection();
-            urlc.connect();
-
-            InputStream instream = urlc.getInputStream();
-            DataInputStream in = new DataInputStream(instream);
-            return in;
+            URLConnection connection = ul.openConnection();
+            connection.connect();
+            InputStream inStream = connection.getInputStream();
+            return new DataInputStream(inStream);
         } catch (IOException e) {
         }
         return null;
     }
 
-    private static void loadRulers(String[] src, Vector vs, int type) {
+    private static void loadRulers(String[] src, Vector<GddRule> vs, int type) {
 
         String s, s1, s2;
         s = s1 = s2 = null;
@@ -98,7 +91,7 @@ public class RuleList {
             t = t.trim();
             if (t.length() != 0) {
                 if (s != null && t.startsWith("*")) {
-                    Grule r = new Grule(id++, s, s1, s2, type);
+                    GddRule r = new GddRule(id++, s, s1, s2, type);
                     vs.add(r);
                     s = t;
                     s1 = s2 = null;
@@ -109,7 +102,6 @@ public class RuleList {
                         s1 = t;
                     else s2 = t;
                 }
-
             }
             if (i >= len - 1)
                 break;
@@ -119,8 +111,8 @@ public class RuleList {
     }
 
     public static void loadRulers() {
-        loadRulers(rulers.GDD, GDDLIST, 0);
-        loadRulers(rulers.FULL, FULLLIST, 1);
+        loadRulers(rulers.GDD, sGddList, 0);
+        loadRulers(rulers.FULL, sFullList, 1);
     }
 
     public static void writeRulers(File file, File file2) {
@@ -128,7 +120,6 @@ public class RuleList {
             file2.createNewFile();
 
             BufferedReader reader = new BufferedReader(new FileReader(file));
-
             BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
 
             String t = reader.readLine();

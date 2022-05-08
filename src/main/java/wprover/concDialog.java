@@ -1,11 +1,35 @@
 package wprover;
 
-import gprover.*;
-
-import javax.swing.*;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Vector;
-import java.awt.*;
-import java.awt.event.*;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+
+import gprover.CST;
+import gprover.cons;
+import gprover.gib;
+import preference.CMisc;
+import util.ResourceUtil;
 
 public class concDialog extends JBaseDialog implements ActionListener, ItemListener {
     int type = 0; // 0. Conclusion   1. NDGS.
@@ -126,9 +150,9 @@ public class concDialog extends JBaseDialog implements ActionListener, ItemListe
         JPanel Pane1 = new JPanel();
         Pane1.setLayout(new BoxLayout(Pane1, BoxLayout.Y_AXIS));
 
-        ic1 = GExpert.createImageIcon("images/ptree/hook.gif");
-        ic2 = GExpert.createImageIcon("images/ptree/cross.gif");
-        ic3 = GExpert.createImageIcon("images/ptree/question.gif");
+        ic1 = ResourceUtil.createImageIcon("images/ptree/hook.gif");
+        ic2 = ResourceUtil.createImageIcon("images/ptree/cross.gif");
+        ic3 = ResourceUtil.createImageIcon("images/ptree/question.gif");
 
 
         int len = ts.length;

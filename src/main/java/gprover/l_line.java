@@ -41,7 +41,6 @@ public class l_line extends cclass {
 
     public static int inter_lls(l_line l1, l_line l2) {
         if (l1 == null || l2 == null || l1 == l2) return (0);
-        if (l1 == l2) return 0;
 
         for (int i = 0; i <= l1.no; i++)
             for (int j = 0; j <= l2.no; j++) {

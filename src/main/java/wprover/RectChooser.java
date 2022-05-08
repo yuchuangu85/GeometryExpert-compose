@@ -1,10 +1,9 @@
 package wprover;
 
-import UI.DropShadowBorder;
-import UI.EntityButtonUI;
+import preference.CMisc;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 

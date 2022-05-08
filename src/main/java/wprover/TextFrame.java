@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 
+import preference.CMisc;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -78,7 +80,7 @@ public class TextFrame extends JBaseDialog implements ItemListener,
         topPanel.add(Box.createHorizontalStrut(5));
 
 
-        int[] fz = CMisc.getFontSizePool();
+        int[] fz = CMisc.getsFontSizePool();
         int n = fz.length;
         Object[] o = new Object[n];
         for (int i = 0; i < n; i++)

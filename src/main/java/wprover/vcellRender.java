@@ -1,21 +1,37 @@
 package wprover;
 
-import gprover.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Vector;
 
-import javax.swing.*;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeCellEditor;
+import javax.swing.AbstractCellEditor;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.*;
-import java.util.Vector;
-import java.util.EventObject;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeCellEditor;
+import javax.swing.tree.TreeCellRenderer;
+
+import gprover.cond;
+import gprover.dterm;
+import gprover.el_term;
+import gprover.gr_term;
+import gprover.l_list;
+import gprover.rule;
+import gprover.xterm;
+import preference.CMisc;
+import util.ResourceUtil;
 
 /**
  * Created by IntelliJ IDEA.
@@ -428,8 +444,8 @@ class BasicCellEditor extends AbstractCellEditor implements TreeCellEditor {
 
 
 class itemLabel extends JLabel {
-    public static ImageIcon icon = GExpert.createImageIcon("images/dtree/detail.gif");
-    private static ImageIcon icon_bc = GExpert.createImageIcon("images/dtree/because.gif");
+    public static ImageIcon icon = ResourceUtil.createImageIcon("images/dtree/detail.gif");
+    private static ImageIcon icon_bc = ResourceUtil.createImageIcon("images/dtree/because.gif");
 
 
     public static Font font = CMisc.fullFont;

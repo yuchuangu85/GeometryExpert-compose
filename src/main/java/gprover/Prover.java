@@ -147,10 +147,7 @@ public class Prover {
         return db.search_a_fact(t, s1, s2, s3);
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    public static cond getFullconc() {
+    public static cond getFullConc() {
         cond co = gt.getConc();
         dbfull.show_pred(co);
         return co;
@@ -248,7 +245,6 @@ public class Prover {
         return null;
     }
 
-    /////////////////////////////////////////////////////
     /// angle deduction.
 
 }
